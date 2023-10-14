@@ -82,6 +82,11 @@ if (mysqli_num_rows($hasil) > 0) {
         $statusUnggah = 0;
     }
 
+    /* langkah2:
+        1. enkripsi file, lalu pindahkan
+        2. enkripsi data lokasi file untuk di tabel, lalu masukkan
+    */
+
     // memindahkan file dari tempat sementara (tmp) ke tempat yang telah ditentukan di $dirUnggahData
     if ($statusUnggah === 0) {
         echo "Gagal syarat unggah";
@@ -104,8 +109,6 @@ if (mysqli_num_rows($hasil) > 0) {
             echo "Gagal unggah video";
         }
     }
-
-    // ============================================================================================================
 
     $sql_aes = "INSERT INTO ki_aes (id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video) VALUES ('" . $baris["id"] . "', '$nama_lengkap', '$jenis_kelamin', '$warga_negara', '$agama', '$status_kawin', '$no_telepon', '$foto_ktp', '$dokumen', '$video')";
 
