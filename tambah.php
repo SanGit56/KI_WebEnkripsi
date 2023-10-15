@@ -1,4 +1,38 @@
 <?php
+function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, $jenis_kelamin, $warga_negara, $agama, $status_kawin, $no_telepon, $foto_ktp, $dokumen, $video, $iv, $key)
+{
+    $sql = "INSERT INTO " . $nama_tabel . " (id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key) VALUES ('$id', '$nama_lengkap', '$jenis_kelamin', '$warga_negara', '$agama', '$status_kawin', '$no_telepon', '$foto_ktp', '$dokumen', '$video', '$iv', '$key')";
+
+    if ($koneksi->query($sql) === TRUE) {
+        echo "Berhasil menambah data " . $nama_tabel;
+    } else {
+        echo "Gagal: " . $sql . "<br>" . $koneksi->error;
+    }
+
+    // buat lokasi file yang diunggah
+    $foto_ktp_alamat = $dirUnggahData . "/" . $foto_ktp;
+    $dokumen_alamat = $dirUnggahData . "/" . $dokumen;
+    $video_alamat = $dirUnggahData . "/" . $video;
+
+    if (move_uploaded_file($_FILES["foto_ktp"]["tmp_name"], $foto_ktp_alamat)) {
+        echo "File " . htmlspecialchars(basename($_FILES["foto_ktp"]["name"])) . " telah diunggah";
+    } else {
+        echo "Gagal unggah gambar";
+    }
+
+    if (move_uploaded_file($_FILES["dokumen"]["tmp_name"], $dokumen_alamat)) {
+        echo "File " . htmlspecialchars(basename($_FILES["dokumen"]["name"])) . " telah diunggah";
+    } else {
+        echo "Gagal unggah dokumen";
+    }
+
+    if (move_uploaded_file($_FILES["video"]["tmp_name"], $video_alamat)) {
+        echo "File " . htmlspecialchars(basename($_FILES["video"]["name"])) . " telah diunggah";
+    } else {
+        echo "Gagal unggah video";
+    }
+}
+
 $namaserver = "localhost";
 $usernamedb = "root";
 $passworddb = "";
@@ -21,8 +55,13 @@ $hasil = mysqli_query($konek, $sql_pengguna);
 $dirUnggahData = "data_unggah/" . $username;
 $statusUnggah = 1;
 
-$key_aes = openssl_random_pseudo_bytes(16);
-$iv_aes = openssl_random_pseudo_bytes(16); 
+// setel iv dan key enkripsi
+$iv_aes = openssl_random_pseudo_bytes(16);
+$key_aes = openssl_random_pseudo_bytes(32);
+$iv_rc4 = "1234567890abcdef0";
+$key_rc4 = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+$iv_des = "12345678";
+$key_des = "0123456789abcdef";
 
 if (mysqli_num_rows($hasil) > 0) {
     // ambil data dari hasil bacaan database
@@ -72,40 +111,36 @@ if (mysqli_num_rows($hasil) > 0) {
         $dokumen_aes = openssl_encrypt($dokumen, 'AES-128-CBC', $key_aes, 0, $iv_aes);
         $video_aes = openssl_encrypt($video, 'AES-128-CBC', $key_aes, 0, $iv_aes);
 
-        $sql_aes = "INSERT INTO ki_aes (id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video) VALUES ('" . $baris["id"] . "', '$nama_lengkap_aes', '$jenis_kelamin_aes', '$warga_negara_aes', '$agama_aes', '$status_kawin_aes', '$no_telepon_aes', '$foto_ktp_aes', '$dokumen_aes', '$video_aes')";
+        $tabel = "ki_aes";
+        unggah_data($konek, $tabel, $dirUnggahData, $baris["id"], $nama_lengkap_aes, $jenis_kelamin_aes, $warga_negara_aes, $agama_aes, $status_kawin_aes, $no_telepon_aes, $foto_ktp_aes, $dokumen_aes, $video_aes, $iv_aes, $key_aes);
 
-        if ($konek->query($sql_aes) === TRUE) {
-            echo "Berhasil menambah data AES";
-        } else {
-            echo "Gagal: " . $sql . "<br>" . $konek->error;
-        }
+        // enkripsi RC4
+        $nama_lengkap_rc4 = base64_encode(openssl_encrypt($nama_lengkap, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $jenis_kelamin_rc4 = base64_encode(openssl_encrypt($jenis_kelamin, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $warga_negara_rc4 = base64_encode(openssl_encrypt($warga_negara, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $agama_rc4 = base64_encode(openssl_encrypt($agama, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $status_kawin_rc4 = base64_encode(openssl_encrypt($status_kawin, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $no_telepon_rc4 = base64_encode(openssl_encrypt($no_telepon, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $foto_ktp_rc4 = base64_encode(openssl_encrypt($foto_ktp, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $dokumen_rc4 = base64_encode(openssl_encrypt($dokumen, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
+        $video_rc4 = base64_encode(openssl_encrypt($video, 'rc4-ctr', $key_rc4, 0, $iv_rc4));
 
-        // buat lokasi file yang diunggah
-        $foto_ktp_alamat = $dirUnggahData . "/" . $foto_ktp_aes;
-        $dokumen_alamat = $dirUnggahData . "/" . $dokumen_aes;
-        $video_alamat = $dirUnggahData . "/" . $video_aes;
+        $tabel = "ki_rc4";
+        unggah_data($konek, $tabel, $dirUnggahData, $baris["id"], $nama_lengkap_rc4, $jenis_kelamin_rc4, $warga_negara_rc4, $agama_rc4, $status_kawin_rc4, $no_telepon_rc4, $foto_ktp_rc4, $dokumen_rc4, $video_rc4, $iv_rc4, $key_rc4);
 
-        if (move_uploaded_file($_FILES["foto_ktp"]["tmp_name"], $foto_ktp_alamat)) {
-            echo "File " . htmlspecialchars(basename($_FILES["foto_ktp"]["name"])) . " telah diunggah";
-        } else {
-            echo "Gagal unggah gambar";
-        }
+        // enkripsi DES
+        $nama_lengkap_des = base64_encode(openssl_encrypt($nama_lengkap, 'des-ofb', $key_des, 0, $iv_des));
+        $jenis_kelamin_des = base64_encode(openssl_encrypt($jenis_kelamin, 'des-ofb', $key_des, 0, $iv_des));
+        $warga_negara_des = base64_encode(openssl_encrypt($warga_negara, 'des-ofb', $key_des, 0, $iv_des));
+        $agama_des = base64_encode(openssl_encrypt($agama, 'des-ofb', $key_des, 0, $iv_des));
+        $status_kawin_des = base64_encode(openssl_encrypt($status_kawin, 'des-ofb', $key_des, 0, $iv_des));
+        $no_telepon_des = base64_encode(openssl_encrypt($no_telepon, 'des-ofb', $key_des, 0, $iv_des));
+        $foto_ktp_des = base64_encode(openssl_encrypt($foto_ktp, 'des-ofb', $key_des, 0, $iv_des));
+        $dokumen_des = base64_encode(openssl_encrypt($dokumen, 'des-ofb', $key_des, 0, $iv_des));
+        $video_des = base64_encode(openssl_encrypt($video, 'des-ofb', $key_des, 0, $iv_des));
 
-        if (move_uploaded_file($_FILES["dokumen"]["tmp_name"], $dokumen_alamat)) {
-            echo "File " . htmlspecialchars(basename($_FILES["dokumen"]["name"])) . " telah diunggah";
-        } else {
-            echo "Gagal unggah dokumen";
-        }
-
-        if (move_uploaded_file($_FILES["video"]["tmp_name"], $targetFile_alamat)) {
-            echo "File " . htmlspecialchars(basename($_FILES["video"]["name"])) . " telah diunggah";
-        } else {
-            echo "Gagal unggah video";
-        }
-
-        // in php, how to encrypt text form submission with rc4 encryption with cfb modes of operation?
-
-        // in php, how to encrypt text form submission with des encryption with ofb modes of operation?
+        $tabel = "ki_des";
+        unggah_data($konek, $tabel, $dirUnggahData, $baris["id"], $nama_lengkap_des, $jenis_kelamin_des, $warga_negara_des, $agama_des, $status_kawin_des, $no_telepon_des, $foto_ktp_des, $dokumen_des, $video_des, $iv_des, $key_des);
     }
 } else {
     echo "Tidak boleh menambah data";

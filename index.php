@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form method="post" action="tambah.php">
+    <form method="post" action="tambah.php" enctype="multipart/form-data">
         <input type="text" placeholder="username" name="username" required>
         <input type="password" placeholder="password" name="password" required>
         <input type="text" placeholder="nama lengkap" name="nama_lengkap" required>
@@ -31,9 +31,10 @@
     </form>
 
     <?php
-    function ambil_data($koneksi, $kueri_sql, $nama_tabel)
+    function ambil_data($koneksi, $nama_tabel)
     {
-        $hasil = mysqli_query($koneksi, $kueri_sql);
+        $sql = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM " . $nama_tabel;
+        $hasil = mysqli_query($koneksi, $sql);
 
         echo "<table>
                 <caption>Tabel " . $nama_tabel . "</caption>
@@ -97,17 +98,14 @@
 
     echo "</table>";
     
-    $sql_aes = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM ki_aes";
     $tabel = "ki_aes";
-    ambil_data($konek, $sql_aes, $tabel);
+    ambil_data($konek, $tabel);
 
-    $sql_rc4 = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM ki_rc4";
     $tabel = "ki_rc4";
-    ambil_data($konek, $sql_rc4, $tabel);
+    ambil_data($konek, $tabel);
 
-    $sql_des = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM ki_des";
     $tabel = "ki_des";
-    ambil_data($konek, $sql_des, $tabel);
+    ambil_data($konek, $tabel);
 
     mysqli_close($konek);
     ?>
