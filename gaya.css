@@ -1,0 +1,48 @@
+body {
+    background-color: #f0f8ff; /* Light blue background */
+    font-family: Arial, sans-serif;
+}
+
+form {
+    margin: 20px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #b0e0e6; /* Light blue border */
+    border-radius: 5px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 200px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #87ceeb; /* Light sky blue button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+table {
+    margin: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #b0e0e6; /* Light blue border */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #87ceeb; /* Light sky blue header background */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f0f8ff; /* Light blue alternating row background */
+}
