@@ -67,8 +67,6 @@ $password = hash("sha256", mysqli_real_escape_string($konek, $_POST["password"])
 $sql_pengguna = "SELECT id FROM ki_pengguna WHERE username = '" . $username . "' AND password = '" . $password . "'";
 $hasil = mysqli_query($konek, $sql_pengguna);
 
-// buat folder untuk menyimpan file unggahan
-$dirUnggahData = "data_unggah/" . $username;
 $statusUnggah = 1;
 
 // setel iv dan key enkripsi
@@ -108,6 +106,9 @@ if (mysqli_num_rows($hasil) > 0) {
         echo "Ukuran file terlalu besar<br />";
         $statusUnggah = 0;
     }
+    
+    // buat folder untuk menyimpan file unggahan
+    $dirUnggahData = "data_unggah/" . $baris["id"];
 
     // memindahkan file dari tempat sementara (tmp) ke tempat yang telah ditentukan di $dirUnggahData
     if ($statusUnggah === 0) {

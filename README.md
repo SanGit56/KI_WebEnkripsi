@@ -23,4 +23,5 @@ Melakukan penambahan data yang diisi melalui _form_ menggunakan 3 algoritma enkr
 ## Kendala
 1. Tidak menemukan _library_ untuk algoritma RC4. OpenSSL tidak lagi menyediakan RC4
 2. Untuk beberapa file dokumen tidak dapat diunggah jika digunakan enkripsi AES dan DES karena ada masalah penamaan (terdapat karakter "/")
-2. Untuk beberapa file gambar tidak dapat diunggah jika digunakan enkripsi DES karena ada masalah penamaan (terdapat karakter "/")
+3. Untuk beberapa file gambar tidak dapat diunggah jika digunakan enkripsi DES karena ada masalah penamaan (terdapat karakter "/")
+4. Proses zip file tidak sempurna (bisa membuka dan mengisi file, tapi tidak bisa menutup) sehingga file zip yang diunduh tidak bisa diekstrak atau dibuka. File juga masih terhitung kosong
