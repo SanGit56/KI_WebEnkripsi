@@ -15,12 +15,12 @@ Tabel-tabel untuk menyimpan data memiliki kolom rujukan ke tabel pengguna, data 
 Laman berisi _form_ untuk masuk (_login_) dan daftar akun yang dapat digunakan.
 
 ### 2. baca.php
-Laman untuk membaca data sesuai pengguna, dari tabel (terenkripsi) dan yang sudah didekripsi (belum bekerja). Serta _form_ untuk menambahkan data.
+Laman untuk membaca data sesuai pengguna, dari tabel (terenkripsi) dan yang sudah didekripsi. Serta _form_ untuk menambahkan data.
 
 ### 3. tambah.php
-- sudah bisa:
-    - menambahkan data terenkripsi ke tabel (kecuali RC4)
-    - validasi akun dan file
-- belum bisa:
-    - mengunggah data file
-    - memindahkan data file (mungkin karena belum ada)
+Melakukan penambahan data yang diisi melalui _form_ menggunakan 3 algoritma enkripsi.
+
+## Kendala
+1. Tidak menemukan _library_ untuk algoritma RC4. OpenSSL tidak lagi menyediakan RC4
+2. Untuk beberapa file dokumen tidak dapat diunggah jika digunakan enkripsi AES dan DES karena ada masalah penamaan (terdapat karakter "/")
+2. Untuk beberapa file gambar tidak dapat diunggah jika digunakan enkripsi DES karena ada masalah penamaan (terdapat karakter "/")
