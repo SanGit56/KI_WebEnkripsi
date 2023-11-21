@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2023 at 11:18 AM
+-- Generation Time: Nov 21, 2023 at 10:51 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -55,7 +55,8 @@ INSERT INTO `ki_aes` (`id`, `id_pengguna`, `nama_lengkap`, `jenis_kelamin`, `war
 (5, 2, 'eq6lDYFeRifBE3Mh1+6pSA==', 'dCDG6cmZCCeUQW9Fh543KA==', 'RBkK4n/L+hmjMhairY/yug==', '/R5kWvsm2czKsU33KNgRKQ==', 'ep46lt7YKQt/GRV8T3eXmA==', 'TB3OJdJyzqZgXF+wMk5N9Q==', 'jiR12C9T/157YzHgR8axpg==', 'xwqlntIbd5837ebIlMnvaw==', 'us4EZIxmWxBj+2TxduwS3Q==', 0x349f56e4c9dd557b38b8bb641c037bda, 0xb54d755deca51410e636af00c848b755ebea9ac47209f666b03306560a13177e),
 (6, 2, 'IiO4pwEGa+Azd5cB5O6g8A==', 'C2mGTLHeH4Hz9GZ2mk+JMA==', '1ZDZTL9WZ29Fu5N7eE6Few==', '5qaEJH+twiIuAv20LKJyQA==', 'wQ4Z1MwYwVWq92gxRYQVJw==', 'slymeA1WWePrvTjryjbYjQ==', 'XI4OqZII+7NRYKys0LAzAg==', 'mOlyBPBPPPZ32FNnEYMZwg==', 'VZjsYd5lgElwliDsJZO3DQ==', 0xe566dbd3a0719b1c078e069bd0abf54b, 0xb556b5c3f0d6580f49f39d39465426f98b105f9562510f63bebc9ffb02c77f95),
 (7, 2, 'rLP+NCBK6dBwf+SS5DI2Kw==', 'FvVPhNLG6StjG6z//vl7jg==', 'IzjCcwDyOeKOHmenk04fRw==', 'NgffrkCu6hiLR4qtuLHntA==', '1Fb0TcS2IeIFreud44AndA==', 'fK8vZ4MQbaQixFUdaYFBew==', 'Ew86muoMjepORtC3O9I96Q==', 'Vly7QFuGReJgEvMSeGB/GQ==', 'rPde85qLHYQmvBCyW5Sv+A==', 0x1ff2fcd6972298e08eb4bae6d88026, 0xa8ca369798bd9e4223aff02976eb474dd085964084a8d7d611cc438b2c59855d),
-(8, 3, 'D1rng/ZtZ8zOPENqhgO15A==', 'RZ3sw4lV4ZA41PgRO2BSVA==', 'Rk+86EV1FMfs1i6naNJm5g==', 'tFjIqQvtQsEAti3uink/aA==', 'sxND5Ylais50kfFRO1DFJQ==', '680Cl2+t0NyGl4iTNHsxHA==', '91Dbvq1+DKR6h8B9PxW1XQ==', 'SHVMZuLeIwRPdLKYqrea7A==', 'xkQULoKw5pAsqMP4t9cswA==', 0xf13c9649f5f43882283cbd86dbdf8503, 0x99c9b50bbc601999fea99ac9309eb6d1c613bd87ca14774d5f9d20f1d94ae4);
+(8, 3, 'D1rng/ZtZ8zOPENqhgO15A==', 'RZ3sw4lV4ZA41PgRO2BSVA==', 'Rk+86EV1FMfs1i6naNJm5g==', 'tFjIqQvtQsEAti3uink/aA==', 'sxND5Ylais50kfFRO1DFJQ==', '680Cl2+t0NyGl4iTNHsxHA==', '91Dbvq1+DKR6h8B9PxW1XQ==', 'SHVMZuLeIwRPdLKYqrea7A==', 'xkQULoKw5pAsqMP4t9cswA==', 0xf13c9649f5f43882283cbd86dbdf8503, 0x99c9b50bbc601999fea99ac9309eb6d1c613bd87ca14774d5f9d20f1d94ae4),
+(9, 3, 'ZDsAKPAtAO6fjDIl29c+Cw==', 'IEZfGyCNMg3kN79BscyVtg==', '1vKRkvHQgqhT/gpy9VHluQ==', 'D1s9v8QV/957ICokMEvbCQ==', 'j8F29XsWkknfT3AzGZ0LYw==', 'ZCoAx0Z0lDKOfvQtd/ijeA==', '+lz9LY9m5+EFqivfNi7Xeg2ukrLCusUUSHlWYrcKF8k=', 'Le0B3ONoJrn7iuuj/BO2XQ==', 'O3T+3/Mnw3mw8vynbS5izRiKwgU6HoGg2ArDKaWojTs=', 0x62bb40eafe5724bb6e814c719b6c6d9c, 0xf49637dbf5db8133d38838c3c92dae03df58cbae6c546d69e56e0c3cd0a80672);
 
 -- --------------------------------------------------------
 
@@ -89,7 +90,33 @@ INSERT INTO `ki_des` (`id`, `id_pengguna`, `nama_lengkap`, `jenis_kelamin`, `war
 (3, 2, 'yw==', 'yQ==', '0g==', 'xw==', '0w==', '3w==', '14fRCedi7ys=', '1YfOE6Rt8WKiZAP6', 'x4HBA6Ym8jzu', 0xba4cc16e92bec001, 0x0eef6adf3adf63281772f0b3046f3e54dd4b5e25c89623fdf8a658843b02f7ae),
 (4, 2, 'cg==', 'YA==', 'dw==', 'dQ==', 'dA==', 'ew==', 'ddWhKhuE8TE=', 'd9W+MFiL73jZYn9w', 'ZdOxIFrA7CaV', 0xa4f73162c76ac62f, 0x8f86ef36d8f811830c4f52733f83854a218e6fd0df03f4b4681ec8d0d6cad39b),
 (5, 2, 'tPUt2yKa4A==', 'o/Upyg==', 'qf46wCWR9DSl', 'qeMyziY=', 'ovUy2iY=', '8KhvnHnHsw==', 'pv8qwGWe9zo=', 'pP812iaR6XO8ykAV', 'tvk6yiTa6i3w', 0xc15e323be7358c35, 0x4c71d78d03da59ec20f6d21e8c50da106189e0b5302ff8b459dfd5e82ca81433),
-(6, 3, 'tA9EWw==', 'sAU=', 'rQA=', 'uwlIVyI=', 'uAtFVS4=', '6lYRAg==', 'vAFdVW1fPCg=', 'vgFCTy5QImGibnOA', 'rAdNXywbIT/u', 0x55156db55fa82ed4, 0x00491ea47243c915d244d5ea1e73219860af847e4d49269fe5eca017deda570d);
+(6, 3, 'tA9EWw==', 'sAU=', 'rQA=', 'uwlIVyI=', 'uAtFVS4=', '6lYRAg==', 'vAFdVW1fPCg=', 'vgFCTy5QImGibnOA', 'rAdNXywbIT/u', 0x55156db55fa82ed4, 0x00491ea47243c915d244d5ea1e73219860af847e4d49269fe5eca017deda570d),
+(7, 3, '3Q==', '2w==', 'yQ==', '3g==', '2A==', '1Q==', '5WM+nSkaRVrqt8fYoQ/m4ynJKlGM', '6E8NzjlvFQe5q4eE60U=', '+mc98CsYRlnstM/dqQ7j4yTQbkybnQ==', 0xd143885b2c42937c, 0x4cabed65767cf166718240414cab8acd3b59085fbc0885778bb9c2ac8a038698);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ki_minta_akses`
+--
+
+CREATE TABLE `ki_minta_akses` (
+  `id` int(11) NOT NULL,
+  `id_pemohon` int(11) NOT NULL,
+  `status_akses` tinyint(4) NOT NULL,
+  `id_dimohon` int(11) NOT NULL,
+  `enc_key` varbinary(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ki_minta_akses`
+--
+
+INSERT INTO `ki_minta_akses` (`id`, `id_pemohon`, `status_akses`, `id_dimohon`, `enc_key`) VALUES
+(4, 1, 0, 2, ''),
+(5, 2, 0, 3, ''),
+(6, 3, 0, 4, ''),
+(7, 4, 0, 1, ''),
+(8, 2, 1, 1, '');
 
 -- --------------------------------------------------------
 
@@ -148,7 +175,8 @@ INSERT INTO `ki_rc4` (`id`, `id_pengguna`, `nama_lengkap`, `jenis_kelamin`, `war
 (5, 2, '', '', '', '', '', '', '', '', '', '', 0x95878d047dbcc8b34676a1ca38116a7562f7ff72c7bde1fcf4c58adf541139f3),
 (6, 2, '', '', '', '', '', '', '', '', '', '', 0xc37f16e0d8f41e1730abd0da7233bf7ebbe8352f6c4b26a228ca3f9a21d182),
 (7, 2, '', '', '', '', '', '', '', '', '', '', 0xe94a218f618ce19047a263252f23da8a2ee8c9849d869d1dbda06e0ea7d7ed5f),
-(8, 3, '', '', '', '', '', '', '', '', '', '', 0xd5b17b2bd87fa00a902a534eddd7961a1a3b7b2646aa1d2a0403d735cf92f915);
+(8, 3, '', '', '', '', '', '', '', '', '', '', 0xd5b17b2bd87fa00a902a534eddd7961a1a3b7b2646aa1d2a0403d735cf92f915),
+(9, 3, '', '', '', '', '', '', '', '', '', '', 0x98eb3e1aad8f2e23599145da0447ae6629c0f9c54cb7b4cb9b690d80d1846a4d);
 
 --
 -- Indexes for dumped tables
@@ -167,6 +195,12 @@ ALTER TABLE `ki_aes`
 ALTER TABLE `ki_des`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_pengguna` (`id_pengguna`);
+
+--
+-- Indexes for table `ki_minta_akses`
+--
+ALTER TABLE `ki_minta_akses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ki_pengguna`
@@ -189,13 +223,19 @@ ALTER TABLE `ki_rc4`
 -- AUTO_INCREMENT for table `ki_aes`
 --
 ALTER TABLE `ki_aes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ki_des`
 --
 ALTER TABLE `ki_des`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `ki_minta_akses`
+--
+ALTER TABLE `ki_minta_akses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ki_pengguna`
@@ -207,7 +247,7 @@ ALTER TABLE `ki_pengguna`
 -- AUTO_INCREMENT for table `ki_rc4`
 --
 ALTER TABLE `ki_rc4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
