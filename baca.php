@@ -113,7 +113,19 @@
 
             if (mysqli_num_rows($hasil) > 0) {
                 while ($baris = mysqli_fetch_assoc($hasil)) {
-                    echo "<tr><td>" . $baris["id"] . "</td><td>" . $baris["id_pengguna"] . "</td><td>" . $baris["nama_lengkap"] . "</td><td>" . $baris["jenis_kelamin"] . "</td><td>" . $baris["warga_negara"] . "</td><td>" . $baris["agama"] . "</td><td>" . $baris["status_kawin"] . "</td><td>" . $baris["no_telepon"] . "</td><td>" . $baris["foto_ktp"] . "</td><td>" . $baris["dokumen"] . "</td><td>" . $baris["video"] . "</td><td>" . $baris["init_vector"] . "</td><td>" . $baris["enc_key"] . "</td></tr>";
+                    echo "<tr><td>" . $baris["id"] . "</td>
+                    <td>" . $baris["id_pengguna"] . "</td>
+                    <td>" . $baris["nama_lengkap"] . "</td>
+                    <td>" . $baris["jenis_kelamin"] . "</td>
+                    <td>" . $baris["warga_negara"] . "</td>
+                    <td>" . $baris["agama"] . "</td>
+                    <td>" . $baris["status_kawin"] . "</td>
+                    <td>" . $baris["no_telepon"] . "</td>
+                    <td>" . $baris["foto_ktp"] . "</td>
+                    <td>" . $baris["dokumen"] . "</td>
+                    <td>" . $baris["video"] . "</td>
+                    <td>" . base64_encode($baris["init_vector"]) . "</td>
+                    <td>" . base64_encode($baris["enc_key"]) . "</td></tr>";
 
                     if ($nama_tabel == "ki_aes")
                     {
@@ -155,10 +167,34 @@
                         $video = openssl_decrypt($baris["video"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
                     }
 
-                    echo "<tr><td>" . $baris["id"] . "</td><td>" . $baris["id_pengguna"] . "</td><td>" . $nama_lengkap . "</td><td>" . $jenis_kelamin . "</td><td>" . $warga_negara . "</td><td>" . $agama . "</td><td>" . $status_kawin . "</td><td>" . $no_telepon . "</td><td>" . $foto_ktp . "</td><td>" . $dokumen . "</td><td>" . $video . "</td><td>" . $baris["init_vector"] . "</td><td>" . $baris["enc_key"] . "</td></tr>";
+                    echo "<tr><td>" . $baris["id"] . "</td>
+                    <td>" . $baris["id_pengguna"] . "</td>
+                    <td>" . $nama_lengkap . "</td>
+                    <td>" . $jenis_kelamin . "</td>
+                    <td>" . $warga_negara . "</td>
+                    <td>" . $agama . "</td>
+                    <td>" . $status_kawin . "</td>
+                    <td>" . $no_telepon . "</td>
+                    <td>" . $foto_ktp . "</td>
+                    <td>" . $dokumen . "</td>
+                    <td>" . $video . "</td>
+                    <td>" . base64_encode($baris["init_vector"]) . "</td>
+                    <td>" . base64_encode($baris["enc_key"]) . "</td></tr>";
                 }
             } else {
-                echo "<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>";
+                echo "<tr><td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td></tr>";
             }
 
             echo "</table>";

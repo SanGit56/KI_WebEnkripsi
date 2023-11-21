@@ -43,10 +43,16 @@
 
     if (mysqli_num_rows($hasil) > 0) {
         while ($baris = mysqli_fetch_assoc($hasil)) {
-            echo "<tr><td>" . $baris["id"] . "</td><td>" . $baris["username"] . "</td><td>" . $baris["password"] . "</td><td>" . $baris["katasandi"] . "</td></tr>";
+            echo "<tr><td>" . $baris["id"] . "</td>
+            <td>" . $baris["username"] . "</td>
+            <td>" . $baris["password"] . "</td>
+            <td>" . $baris["katasandi"] . "</td></tr>";
         }
     } else {
-        echo "<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>";
+        echo "<tr><td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td></tr>";
     }
 
     echo "</table>";
