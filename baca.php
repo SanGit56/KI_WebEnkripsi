@@ -175,9 +175,16 @@
                     <td>" . $agama . "</td>
                     <td>" . $status_kawin . "</td>
                     <td>" . $no_telepon . "</td>
-                    <td>" . $foto_ktp . "</td>
-                    <td>" . $dokumen . "</td>
-                    <td>" . $video . "</td>
+                    
+                    <td><img src='data_unggah/" . $baris["id_pengguna"] . "_" . $nama_tabel . "/" . $foto_ktp . "' alt='" . $foto_ktp . "' width='150' height='150'></td>
+
+                    <td><iframe src='data_unggah/" . $baris["id_pengguna"] . "_" . $nama_tabel . "/" . $dokumen . "'  width='150' height='150'></iframe></td>
+
+                    <td><video width='150' height='150' controls>
+                        <source src='data_unggah/" . $baris["id_pengguna"] . "_" . $nama_tabel . "/" . $video . "' type='video/mp4'>
+                        Your browser does not support the video tag.
+                    </video>" . $video . "</td>
+                    
                     <td>" . base64_encode($baris["init_vector"]) . "</td>
                     <td>" . base64_encode($baris["enc_key"]) . "</td></tr>";
                 }
