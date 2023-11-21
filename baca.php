@@ -19,11 +19,13 @@
     $password = hash("sha256", mysqli_real_escape_string($konek, $_POST["password"]));
 
     // cek apakah pengguna ada
-    $sql_pengguna = "SELECT id FROM ki_pengguna WHERE username = '" . $username . "' AND password = '" . $password . "'";
-    $hasil = mysqli_query($konek, $sql_pengguna);
+    $sql_cek_pgn = "SELECT id FROM ki_pengguna WHERE username = '" . $username . "' AND password = '" . $password . "'";
+    $hasil_cek_pgn = mysqli_query($konek, $sql_cek_pgn);
+    $id_pgn_msk = "";
     $ada_pengguna = 0;
 
-    if (mysqli_num_rows($hasil) > 0) {
+    if (mysqli_num_rows($hasil_cek_pgn) > 0) {
+        $id_pgn_msk = mysqli_fetch_assoc($hasil_cek_pgn)["id"];
         $ada_pengguna = 1;
     } else {
         echo "Pengguna tidak ditemukan<br />";
@@ -62,6 +64,70 @@
 
         <button>Tambah</button>
     </form>
+
+    <?php
+        $sql_ambil_pgn = "SELECT id, username FROM ki_pengguna";
+        $hasil_ambil_pgn = mysqli_query($konek, $sql_ambil_pgn);
+    
+        echo "<table>
+                <caption>Tabel ki_minta_akses</caption>
+                <tr>
+                    <th>id</th>
+                    <th>username</th>
+                    <th>aksi</th>
+                </tr>";
+    
+        if (mysqli_num_rows($hasil_ambil_pgn) > 0) {
+            while ($baris_ambil_pgn = mysqli_fetch_assoc($hasil_ambil_pgn)) {
+                echo "<tr><td>" . $baris_ambil_pgn["id"] . "</td>
+                <td>" . $baris_ambil_pgn["username"] . "</td>
+                <td><form method='post' action='akses.php'>
+                        <input type='hidden' value='" . $_POST["username"] . "' name='username'>
+                        <input type='hidden' value='" . $_POST["password"] . "' name='password'>
+                        <input type='hidden' value='" . $id_pgn_msk . "' name='id_pemohon'>
+                        <input type='hidden' value='" . $baris_ambil_pgn["id"] . "' name='id_dimohon'>
+                        <input type='hidden' value='minta' name='mode_akses'>
+                        <button>minta akses data</button>
+                    </form>";
+
+                $sql_cek_minta = "SELECT id, id_pemohon, status_akses, id_dimohon FROM ki_minta_akses WHERE id_dimohon = '$id_pgn_msk' AND status_akses = '0'";
+                $hasil_cek_minta = mysqli_query($konek, $sql_cek_minta);
+
+                if (mysqli_num_rows($hasil_cek_minta) > 0) {
+                    while ($baris_cek_minta = mysqli_fetch_assoc($hasil_cek_minta)) {
+                        if ($baris_cek_minta["id_pemohon"] == $baris_ambil_pgn["id"])
+                        {
+                            echo "<form method='post' action='akses.php'>
+                                <input type='hidden' value='" . $_POST["username"] . "' name='username'>
+                                <input type='hidden' value='" . $_POST["password"] . "' name='password'>
+                                <input type='hidden' value='" . $baris_ambil_pgn["id"] . "' name='id_pemohon'>
+                                <input type='hidden' value='" . $id_pgn_msk . "' name='id_dimohon'>
+                                <input type='hidden' value='kasih' name='mode_akses'>
+                                <button>kasih akses data</button>
+                            </form>";
+
+                            echo "<form method='post' action='kunci.php'>
+                                <input type='hidden' value='" . $_POST["username"] . "' name='username'>
+                                <input type='hidden' value='" . $_POST["password"] . "' name='password'>
+                                <input type='hidden' value='" . $baris_ambil_pgn["id"] . "' name='id_pemohon'>
+                                <input type='hidden' value='" . $id_pgn_msk . "' name='id_dimohon'>
+                                <button>bikin kunci</button>
+                            </form>";
+
+                            break;
+                        }
+                    }
+                }
+
+                echo "</td></tr>";
+            }
+        } else {
+            echo "<tr><td>-</td>
+            <td>-</td></tr>";
+        }
+    
+        echo "</table>";
+    ?>
 
     <form method="post" action="unduh.php">
         <input type="hidden" value="<?= $_POST["username"]; ?>" name="username">
@@ -209,16 +275,14 @@
 
         if ($ada_pengguna)
         {
-            $baris = mysqli_fetch_assoc($hasil);
-
             $tabel = "ki_aes";
-            ambil_data($konek, $tabel, $baris["id"]);
+            ambil_data($konek, $tabel, $id_pgn_msk);
 
             $tabel = "ki_rc4";
-            ambil_data($konek, $tabel, $baris["id"]);
+            ambil_data($konek, $tabel, $id_pgn_msk);
 
             $tabel = "ki_des";
-            ambil_data($konek, $tabel, $baris["id"]);
+            ambil_data($konek, $tabel, $id_pgn_msk);
         }
 
         mysqli_close($konek);
