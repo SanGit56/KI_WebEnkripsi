@@ -25,6 +25,7 @@ Laman untuk membaca data sesuai pengguna, dari tabel (terenkripsi) dan yang suda
 Melakukan penambahan data yang diisi melalui _form_ menggunakan 3 algoritma enkripsi.
 
 ### unduh.php
+Mengambil data dari basisdata. Membuka file dengan format zip. Mencari file terenkripsi di direktori yang sebelumnya telah dibuat oleh **tambah.php**. Melakukan dekripsi sesuai jenis yang diminta. Membuat direktori baru untuk file yang datanya telah didekripsi. Menyimpan file terdekripsi ke direktori baru yang telah dibuat. Menutup file dengan format zip yang masih terbuka. Membuat agar file dapat diunduh oleh pengguna.
 
 ## Kendala
 1. Tidak menemukan _library_ untuk algoritma RC4. OpenSSL tidak lagi menyediakan RC4.
