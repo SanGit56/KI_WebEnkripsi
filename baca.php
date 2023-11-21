@@ -106,14 +106,6 @@
                                 <button>kasih akses data</button>
                             </form>";
 
-                            echo "<form method='post' action='kunci.php'>
-                                <input type='hidden' value='" . $_POST["username"] . "' name='username'>
-                                <input type='hidden' value='" . $_POST["password"] . "' name='password'>
-                                <input type='hidden' value='" . $baris_ambil_pgn["id"] . "' name='id_pemohon'>
-                                <input type='hidden' value='" . $id_pgn_msk . "' name='id_dimohon'>
-                                <button>bikin kunci</button>
-                            </form>";
-
                             break;
                         }
                     }
