@@ -4,6 +4,16 @@ if(!isset($_POST["username"]) || !isset($_POST["password"])) {
     die();
 }
 
+function cleanString($inputString) {
+    // Define a regular expression to replace forbidden characters with underscores
+    $cleanedString = preg_replace('/[\/:*?"<>|]/', '_', $inputString);
+
+    // Optionally trim and sanitize the string further based on your needs
+    $cleanedString = trim($cleanedString);
+
+    return $cleanedString;
+}
+
 function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, $jenis_kelamin, $warga_negara, $agama, $status_kawin, $no_telepon, $foto_ktp, $dokumen, $video, $iv, $key)
 {
     $sql = "INSERT INTO " . $nama_tabel . " (id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key) VALUES ('$id', '$nama_lengkap', '$jenis_kelamin', '$warga_negara', '$agama', '$status_kawin', '$no_telepon', '$foto_ktp', '$dokumen', '$video', '$iv', '$key')";
@@ -41,7 +51,6 @@ function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, 
     }
 
     $alamat_dir = "data_unggah/" . $id . "_" . $nama_tabel;
-
     if (!file_exists($alamat_dir)) {
         mkdir($alamat_dir, 0777, true);
     }
@@ -87,11 +96,14 @@ function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, 
     }
 
     $dirUnggahData = $dirUnggahData . "_" . $nama_tabel . "_enk/";
+    if (!file_exists($dirUnggahData)) {
+        mkdir($dirUnggahData, 0777, true);
+    }
 
     // buat lokasi baru file yang dienkripsi
-    $foto_ktp_alamat = $dirUnggahData . $foto_ktp;
-    $dokumen_alamat = $dirUnggahData . $dokumen;
-    $video_alamat = $dirUnggahData . $video;
+    $foto_ktp_alamat = $dirUnggahData . cleanString($foto_ktp);
+    $dokumen_alamat = $dirUnggahData . cleanString($dokumen);
+    $video_alamat = $dirUnggahData . cleanString($video);
 
     // pindahkan data terenkripsi ke file baru
     file_put_contents($foto_ktp_alamat, $foto_ktp_enkripsi);
