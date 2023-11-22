@@ -4,7 +4,7 @@
 Situs _web_ untuk mengunggah data, teks dan file, dan menyimpannya menggunakan 3 metode enkripsi berbeda: AES, RC4, dan DES. Serta dapat mengambil data kembali untuk dibaca/dilihat dan diunduh. Belum ada fitur CRUD untuk pengguna. Oleh karena itu, untuk menggunakan, masih memakai akun yang telah disediakan
 
 ## Skema Basis Data
-Tabel-tabel untuk menyimpan data memiliki kolom rujukan ke tabel **ki_pengguna**, data pribadi (merujuk pada (UU PDP)[https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022]), dokumen-dokumen, serta untuk IV (_initialization vector_) dan _key_. Terdiri atas 4 tabel: <br />
+Tabel-tabel untuk menyimpan data memiliki kolom rujukan ke tabel **ki_pengguna**, data pribadi (merujuk pada [UU PDP](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022)), dokumen-dokumen, serta untuk IV (_initialization vector_) dan _key_. Terdiri atas 4 tabel: <br />
 1. **ki_pengguna** <br />
     Berisi data kredensial pengguna <br />
 2. **ki_aes** <br />
