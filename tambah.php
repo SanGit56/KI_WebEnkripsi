@@ -14,6 +14,32 @@ function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, 
         echo "Gagal: " . $sql . "<br>" . $koneksi->error . "<br />";
     }
 
+    if ($nama_tabel == "ki_aes")
+    {
+        $sql_pgn_pny_akses = "SELECT id, id_pemohon FROM ki_minta_akses WHERE id_dimohon = '$id' AND status_akses = '1'";
+        $hasil_pgn_pny_akses = mysqli_query($koneksi, $sql_pgn_pny_akses);
+
+        if (mysqli_num_rows($hasil_pgn_pny_akses) > 0)
+        {
+            while ($baris_pgn_pny_akses = mysqli_fetch_assoc($hasil_pgn_pny_akses))
+            {
+                $sql_maks_id_data = "SELECT MAX(id) FROM ki_aes WHERE id_pengguna";
+                $hasil_maks_id_data = mysqli_query($koneksi, $sql_maks_id_data);
+                $baris_maks_id_data = mysqli_fetch_assoc($hasil_maks_id_data);
+                $id_data_maks = $baris_maks_id_data["MAX(id)"];
+                $id_pengakses = $baris_pgn_pny_akses["id"];
+
+                $sql_tmbh_akses_data = "INSERT INTO ki_akses_data (id_pengakses, id_data, init_vector, enc_key) VALUES ('$id_pengakses', '$id_data_maks', '$iv', '$key')";
+
+                if ($koneksi->query($sql_tmbh_akses_data) === TRUE) {
+                    echo "Berhasil menambah data<br />";
+                } else {
+                    echo "Gagal: " . $sql . "<br>" . $koneksi->error . "<br />";
+                }
+            }
+        }
+    }
+
     // enkripsi file
     $foto_ktp_asli = file_get_contents($_FILES["foto_ktp"]["tmp_name"]);
     $dokumen_asli = file_get_contents($_FILES["dokumen"]["tmp_name"]);
