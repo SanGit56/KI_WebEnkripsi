@@ -15,7 +15,7 @@ Tabel-tabel untuk menyimpan data memiliki kolom rujukan ke tabel **ki_pengguna**
     Berisi data yang dienkripsi menggunakan DES <br />
 5. **ki_minta_akses** <br />
     Berisi data pengguna yang memohon akses ke data pengguna lain, pengguna yang dimohonkan akses, dan status akses apakah diterima atau tidak <br />
-6. **ki_minta_akses** <br />
+6. **ki_akses_data** <br />
     Berisi data permintaan akses, rekord data yang bisa diakses, dan kunci untuk enkripsi
 
 ## Laman
