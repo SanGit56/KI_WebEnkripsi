@@ -33,7 +33,7 @@ function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, 
         {
             while ($baris_pgn_pny_akses = mysqli_fetch_assoc($hasil_pgn_pny_akses))
             {
-                $sql_maks_id_data = "SELECT MAX(id) FROM ki_aes WHERE id_pengguna";
+                $sql_maks_id_data = "SELECT MAX(id) FROM ki_aes";
                 $hasil_maks_id_data = mysqli_query($koneksi, $sql_maks_id_data);
                 $baris_maks_id_data = mysqli_fetch_assoc($hasil_maks_id_data);
                 $id_data_maks = $baris_maks_id_data["MAX(id)"];
