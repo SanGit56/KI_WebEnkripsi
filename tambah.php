@@ -40,10 +40,32 @@ function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, 
         }
     }
 
+    $alamat_dir = "data_unggah/" . $id . "_" . $nama_tabel;
+
+    if (!file_exists($alamat_dir)) {
+        mkdir($alamat_dir, 0777, true);
+    }
+
+    $alamat_foto_ktp = $alamat_dir . '/' . basename($_FILES["foto_ktp"]["name"]);
+    $alamat_dokumen = $alamat_dir . '/' . basename($_FILES["dokumen"]["name"]);
+    $alamat_video = $alamat_dir . '/' . basename($_FILES["video"]["name"]);
+
+    if (move_uploaded_file($_FILES["foto_ktp"]["tmp_name"], $alamat_foto_ktp)) {
+        echo "berhasil mengunggah foto<br>";
+    }
+    
+    if (move_uploaded_file($_FILES["dokumen"]["tmp_name"], $alamat_dokumen)) {
+        echo "berhasil mengunggah dokumen<br>";
+    }
+    
+    if (move_uploaded_file($_FILES["video"]["tmp_name"], $alamat_video)) {
+        echo "berhasil mengunggah video<br>";
+    }
+
     // enkripsi file
-    $foto_ktp_asli = file_get_contents($_FILES["foto_ktp"]["tmp_name"]);
-    $dokumen_asli = file_get_contents($_FILES["dokumen"]["tmp_name"]);
-    $video_asli = file_get_contents($_FILES["video"]["tmp_name"]);
+    $foto_ktp_asli = file_get_contents($alamat_foto_ktp);
+    $dokumen_asli = file_get_contents($alamat_dokumen);
+    $video_asli = file_get_contents($alamat_video);
 
     if ($nama_tabel == "ki_aes")
     {
@@ -64,10 +86,12 @@ function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, 
         $video_enkripsi = openssl_encrypt($video_asli, 'des-ede3-ofb', $key, 0, $iv);
     }
 
+    $dirUnggahData = $dirUnggahData . "_" . $nama_tabel . "_enk/";
+
     // buat lokasi baru file yang dienkripsi
-    $foto_ktp_alamat = $dirUnggahData . "/" . $foto_ktp;
-    $dokumen_alamat = $dirUnggahData . "/" . $dokumen;
-    $video_alamat = $dirUnggahData . "/" . $video;
+    $foto_ktp_alamat = $dirUnggahData . $foto_ktp;
+    $dokumen_alamat = $dirUnggahData . $dokumen;
+    $video_alamat = $dirUnggahData . $video;
 
     // pindahkan data terenkripsi ke file baru
     file_put_contents($foto_ktp_alamat, $foto_ktp_enkripsi);

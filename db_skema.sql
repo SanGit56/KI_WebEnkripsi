@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 10:51 AM
+-- Generation Time: Nov 22, 2023 at 02:10 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,7 +56,33 @@ INSERT INTO `ki_aes` (`id`, `id_pengguna`, `nama_lengkap`, `jenis_kelamin`, `war
 (6, 2, 'IiO4pwEGa+Azd5cB5O6g8A==', 'C2mGTLHeH4Hz9GZ2mk+JMA==', '1ZDZTL9WZ29Fu5N7eE6Few==', '5qaEJH+twiIuAv20LKJyQA==', 'wQ4Z1MwYwVWq92gxRYQVJw==', 'slymeA1WWePrvTjryjbYjQ==', 'XI4OqZII+7NRYKys0LAzAg==', 'mOlyBPBPPPZ32FNnEYMZwg==', 'VZjsYd5lgElwliDsJZO3DQ==', 0xe566dbd3a0719b1c078e069bd0abf54b, 0xb556b5c3f0d6580f49f39d39465426f98b105f9562510f63bebc9ffb02c77f95),
 (7, 2, 'rLP+NCBK6dBwf+SS5DI2Kw==', 'FvVPhNLG6StjG6z//vl7jg==', 'IzjCcwDyOeKOHmenk04fRw==', 'NgffrkCu6hiLR4qtuLHntA==', '1Fb0TcS2IeIFreud44AndA==', 'fK8vZ4MQbaQixFUdaYFBew==', 'Ew86muoMjepORtC3O9I96Q==', 'Vly7QFuGReJgEvMSeGB/GQ==', 'rPde85qLHYQmvBCyW5Sv+A==', 0x1ff2fcd6972298e08eb4bae6d88026, 0xa8ca369798bd9e4223aff02976eb474dd085964084a8d7d611cc438b2c59855d),
 (8, 3, 'D1rng/ZtZ8zOPENqhgO15A==', 'RZ3sw4lV4ZA41PgRO2BSVA==', 'Rk+86EV1FMfs1i6naNJm5g==', 'tFjIqQvtQsEAti3uink/aA==', 'sxND5Ylais50kfFRO1DFJQ==', '680Cl2+t0NyGl4iTNHsxHA==', '91Dbvq1+DKR6h8B9PxW1XQ==', 'SHVMZuLeIwRPdLKYqrea7A==', 'xkQULoKw5pAsqMP4t9cswA==', 0xf13c9649f5f43882283cbd86dbdf8503, 0x99c9b50bbc601999fea99ac9309eb6d1c613bd87ca14774d5f9d20f1d94ae4),
-(9, 3, 'ZDsAKPAtAO6fjDIl29c+Cw==', 'IEZfGyCNMg3kN79BscyVtg==', '1vKRkvHQgqhT/gpy9VHluQ==', 'D1s9v8QV/957ICokMEvbCQ==', 'j8F29XsWkknfT3AzGZ0LYw==', 'ZCoAx0Z0lDKOfvQtd/ijeA==', '+lz9LY9m5+EFqivfNi7Xeg2ukrLCusUUSHlWYrcKF8k=', 'Le0B3ONoJrn7iuuj/BO2XQ==', 'O3T+3/Mnw3mw8vynbS5izRiKwgU6HoGg2ArDKaWojTs=', 0x62bb40eafe5724bb6e814c719b6c6d9c, 0xf49637dbf5db8133d38838c3c92dae03df58cbae6c546d69e56e0c3cd0a80672);
+(9, 3, 'ZDsAKPAtAO6fjDIl29c+Cw==', 'IEZfGyCNMg3kN79BscyVtg==', '1vKRkvHQgqhT/gpy9VHluQ==', 'D1s9v8QV/957ICokMEvbCQ==', 'j8F29XsWkknfT3AzGZ0LYw==', 'ZCoAx0Z0lDKOfvQtd/ijeA==', '+lz9LY9m5+EFqivfNi7Xeg2ukrLCusUUSHlWYrcKF8k=', 'Le0B3ONoJrn7iuuj/BO2XQ==', 'O3T+3/Mnw3mw8vynbS5izRiKwgU6HoGg2ArDKaWojTs=', 0x62bb40eafe5724bb6e814c719b6c6d9c, 0xf49637dbf5db8133d38838c3c92dae03df58cbae6c546d69e56e0c3cd0a80672),
+(12, 1, 'GF1f7jWXaLspeYr4NnQA4g==', '7XKwBqg4TV3jD6tpmPnyjQ==', 'BDm9pLEGNDc3RG/Y3SbylA==', 'uCSoxszHaSykAenQ0irCow==', 'Ju2xNIxPL9fTFtKzj9o1NQ==', '07lKpg+9DhZ8uxezKjfT9g==', '8sN8Oh6b0XZOwOcj3Io40LlzdC+Xj9PaFAzcb29I5rA=', 'NNFdQsojhUPB68476H5B+A==', 'whFHQ/6pTQcPEMYNVcaTR9jhDgouCxHXQ0rLCz87Ibs=', 0xf48dca6a84e0b8fd293400096d434aac, 0x13ad64aabe8861aafc1f4d9d8fca5ee148e21e7d8a4ae103308114d21ad03782),
+(13, 1, 'KAHzf0EoMnLeTqIqMwJrYA==', 'Z1oSECo3kBOtO+LD24ddHg==', 'HQ9AZzHr7Lo6ikzUhTcDNw==', 'riWTUo1kCf0Orfi54TWqdw==', 'aTbBlOq6FJUnz97Z4g0WzQ==', 'GUrwBmKm/2OCak6hTK1k6A==', 'nqv7/r1voIjir/kOQPlAdbWXknFkE7j5MCO829PgT4k=', 'RhRB0JDc+gzsR+es2JR2Sw==', 'hoAF4KZVvb4hjxWtiR88BSIVlCELb6S1APCOqdgDWv8=', 0x170ddf2d47c5224832c50ec1cdd6ff77, 0x511a12f59b0812c20fda38947c55e9fa018faff3929f58ce437355784d561c),
+(14, 2, 'uY6i0Kti/Rt+ybeVcDyalg==', 'uY6i0Kti/Rt+ybeVcDyalg==', 'uY6i0Kti/Rt+ybeVcDyalg==', 'uY6i0Kti/Rt+ybeVcDyalg==', 'uY6i0Kti/Rt+ybeVcDyalg==', 'uY6i0Kti/Rt+ybeVcDyalg==', 'lO4NbauFUquJ3Lga2ESyIjwm5QsfXQvIU1ZUotZB9Sc=', 'z2M6eAR9t0hLtXe1Wi/MDQ==', 'hhvvOn75NRynMYfoEjSZ59/eVYiPIJL4p+tt+ML0Ulo=', 0xdaed1cab8fc945728fbd90535f37a8da, 0xb5b8133d51819480ae8b1c1328e6a82b0b909433acafc425324f360098b85b94);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ki_akses_data`
+--
+
+CREATE TABLE `ki_akses_data` (
+  `id` int(11) NOT NULL,
+  `id_pengakses` int(11) NOT NULL,
+  `id_data` int(11) NOT NULL,
+  `init_vector` varbinary(16) NOT NULL,
+  `enc_key` varbinary(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ki_akses_data`
+--
+
+INSERT INTO `ki_akses_data` (`id`, `id_pengakses`, `id_data`, `init_vector`, `enc_key`) VALUES
+(5, 7, 13, 0x170ddf2d47c5224832c50ec1cdd6ff77, 0x511a12f59b0812c20fda38947c55e9fa018faff3929f58ce437355784d561c),
+(6, 8, 13, 0x170ddf2d47c5224832c50ec1cdd6ff77, 0x511a12f59b0812c20fda38947c55e9fa018faff3929f58ce437355784d561c),
+(11, 4, 14, 0xdaed1cab8fc945728fbd90535f37a8da, 0xb5b8133d51819480ae8b1c1328e6a82b0b909433acafc425324f360098b85b94);
 
 -- --------------------------------------------------------
 
@@ -91,7 +117,8 @@ INSERT INTO `ki_des` (`id`, `id_pengguna`, `nama_lengkap`, `jenis_kelamin`, `war
 (4, 2, 'cg==', 'YA==', 'dw==', 'dQ==', 'dA==', 'ew==', 'ddWhKhuE8TE=', 'd9W+MFiL73jZYn9w', 'ZdOxIFrA7CaV', 0xa4f73162c76ac62f, 0x8f86ef36d8f811830c4f52733f83854a218e6fd0df03f4b4681ec8d0d6cad39b),
 (5, 2, 'tPUt2yKa4A==', 'o/Upyg==', 'qf46wCWR9DSl', 'qeMyziY=', 'ovUy2iY=', '8KhvnHnHsw==', 'pv8qwGWe9zo=', 'pP812iaR6XO8ykAV', 'tvk6yiTa6i3w', 0xc15e323be7358c35, 0x4c71d78d03da59ec20f6d21e8c50da106189e0b5302ff8b459dfd5e82ca81433),
 (6, 3, 'tA9EWw==', 'sAU=', 'rQA=', 'uwlIVyI=', 'uAtFVS4=', '6lYRAg==', 'vAFdVW1fPCg=', 'vgFCTy5QImGibnOA', 'rAdNXywbIT/u', 0x55156db55fa82ed4, 0x00491ea47243c915d244d5ea1e73219860af847e4d49269fe5eca017deda570d),
-(7, 3, '3Q==', '2w==', 'yQ==', '3g==', '2A==', '1Q==', '5WM+nSkaRVrqt8fYoQ/m4ynJKlGM', '6E8NzjlvFQe5q4eE60U=', '+mc98CsYRlnstM/dqQ7j4yTQbkybnQ==', 0xd143885b2c42937c, 0x4cabed65767cf166718240414cab8acd3b59085fbc0885778bb9c2ac8a038698);
+(7, 3, '3Q==', '2w==', 'yQ==', '3g==', '2A==', '1Q==', '5WM+nSkaRVrqt8fYoQ/m4ynJKlGM', '6E8NzjlvFQe5q4eE60U=', '+mc98CsYRlnstM/dqQ7j4yTQbkybnQ==', 0xd143885b2c42937c, 0x4cabed65767cf166718240414cab8acd3b59085fbc0885778bb9c2ac8a038698),
+(8, 1, 'Pw==', 'Pg==', 'PQ==', 'Jg==', 'JQ==', 'JA==', 'Dm3PsgXAVA7dVRdEHkRGwNhoWb7M', 'A0H84RW1BFOOSVcYVA4=', 'EWnM3wfCVw3bVh9BFkVDwNVxHaPbMA==', 0xcc398357ef66994c, 0x8cefa106eb0ce99d3c468d28eb6a6eb47d78561caa7410d57d9394f82335b13c);
 
 -- --------------------------------------------------------
 
@@ -103,20 +130,19 @@ CREATE TABLE `ki_minta_akses` (
   `id` int(11) NOT NULL,
   `id_pemohon` int(11) NOT NULL,
   `status_akses` tinyint(4) NOT NULL,
-  `id_dimohon` int(11) NOT NULL,
-  `enc_key` varbinary(32) NOT NULL
+  `id_dimohon` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ki_minta_akses`
 --
 
-INSERT INTO `ki_minta_akses` (`id`, `id_pemohon`, `status_akses`, `id_dimohon`, `enc_key`) VALUES
-(4, 1, 0, 2, ''),
-(5, 2, 0, 3, ''),
-(6, 3, 0, 4, ''),
-(7, 4, 0, 1, ''),
-(8, 2, 1, 1, '');
+INSERT INTO `ki_minta_akses` (`id`, `id_pemohon`, `status_akses`, `id_dimohon`) VALUES
+(4, 1, 1, 2),
+(5, 2, 0, 3),
+(6, 3, 0, 4),
+(7, 4, 1, 1),
+(8, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -176,7 +202,11 @@ INSERT INTO `ki_rc4` (`id`, `id_pengguna`, `nama_lengkap`, `jenis_kelamin`, `war
 (6, 2, '', '', '', '', '', '', '', '', '', '', 0xc37f16e0d8f41e1730abd0da7233bf7ebbe8352f6c4b26a228ca3f9a21d182),
 (7, 2, '', '', '', '', '', '', '', '', '', '', 0xe94a218f618ce19047a263252f23da8a2ee8c9849d869d1dbda06e0ea7d7ed5f),
 (8, 3, '', '', '', '', '', '', '', '', '', '', 0xd5b17b2bd87fa00a902a534eddd7961a1a3b7b2646aa1d2a0403d735cf92f915),
-(9, 3, '', '', '', '', '', '', '', '', '', '', 0x98eb3e1aad8f2e23599145da0447ae6629c0f9c54cb7b4cb9b690d80d1846a4d);
+(9, 3, '', '', '', '', '', '', '', '', '', '', 0x98eb3e1aad8f2e23599145da0447ae6629c0f9c54cb7b4cb9b690d80d1846a4d),
+(10, 1, '', '', '', '', '', '', '', '', '', '', 0x8fd0501857b90d3b51a13e1f81b0345fc5a5c24367f971daeabee2181d00ac23),
+(11, 1, '', '', '', '', '', '', '', '', '', '', 0x8fd0501857b90d3b51a13e1f81b0345fc5a5c24367f971daeabee2181d00ac23),
+(12, 1, '', '', '', '', '', '', '', '', '', '', 0x5e2cfa11e71a9ccce1a2e488d34652c358a0dab07fe409c0c1ca0e52f4d24292),
+(13, 2, '', '', '', '', '', '', '', '', '', '', 0x850ddf3053ab6cf77cf961d1016cc6ffdffe9ef61ea3d29749313b248a23062a);
 
 --
 -- Indexes for dumped tables
@@ -190,6 +220,14 @@ ALTER TABLE `ki_aes`
   ADD KEY `id_pengguna` (`id_pengguna`);
 
 --
+-- Indexes for table `ki_akses_data`
+--
+ALTER TABLE `ki_akses_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pengakses` (`id_pengakses`,`id_data`),
+  ADD KEY `id_data` (`id_data`);
+
+--
 -- Indexes for table `ki_des`
 --
 ALTER TABLE `ki_des`
@@ -200,7 +238,9 @@ ALTER TABLE `ki_des`
 -- Indexes for table `ki_minta_akses`
 --
 ALTER TABLE `ki_minta_akses`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pemohon` (`id_pemohon`,`id_dimohon`),
+  ADD KEY `id_dimohon` (`id_dimohon`);
 
 --
 -- Indexes for table `ki_pengguna`
@@ -223,13 +263,19 @@ ALTER TABLE `ki_rc4`
 -- AUTO_INCREMENT for table `ki_aes`
 --
 ALTER TABLE `ki_aes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `ki_akses_data`
+--
+ALTER TABLE `ki_akses_data`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ki_des`
 --
 ALTER TABLE `ki_des`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ki_minta_akses`
@@ -247,7 +293,7 @@ ALTER TABLE `ki_pengguna`
 -- AUTO_INCREMENT for table `ki_rc4`
 --
 ALTER TABLE `ki_rc4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

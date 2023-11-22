@@ -27,6 +27,10 @@
     if (mysqli_num_rows($hasil_cek_pgn) > 0) {
         $id_pgn_msk = mysqli_fetch_assoc($hasil_cek_pgn)["id"];
         $ada_pengguna = 1;
+
+        if (!file_exists("data_unggah")) {
+            mkdir("data_unggah", 0777, true);
+        }
     } else {
         echo "Pengguna tidak ditemukan<br />";
         die();
@@ -262,8 +266,8 @@
                 <td>-</td></tr>";
             }
 
-            if ($nama_tabel = "ki_aes")
-            {    
+            if ($nama_tabel == "ki_aes")
+            {
                 $sql_pgn_pny_akses = "SELECT kma.id AS id_kma, kad.id_pengakses, kad.id_data FROM ki_minta_akses kma, ki_akses_data kad WHERE kma.id_pemohon = '$id_pengguna' AND kma.status_akses = '1' AND kma.id = kad.id_pengakses";
                 $hasil_pgn_pny_akses = mysqli_query($koneksi, $sql_pgn_pny_akses);
 
