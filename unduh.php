@@ -30,6 +30,16 @@
         die();
     }
 
+    function cleanString($inputString) {
+        // Define a regular expression to replace forbidden characters with underscores
+        $cleanedString = preg_replace('/[\/:*?"<>|]/', '_', $inputString);
+    
+        // Optionally trim and sanitize the string further based on your needs
+        $cleanedString = trim($cleanedString);
+    
+        return $cleanedString;
+    }
+
     function ambil_file($koneksi, $nama_tabel, $id_pengguna)
     {
         $sql = "SELECT id, id_pengguna, foto_ktp, dokumen, video, init_vector, enc_key FROM " . $nama_tabel . " WHERE id_pengguna = '" . $id_pengguna . "'";
@@ -39,7 +49,7 @@
             $i = 0;
 
             // Create a zip archive of the decrypted files
-            $zipFile = $id_pengguna . '_' . $nama_tabel . '.zip';
+            $zipFile = $id_pengguna . '_' . $nama_tabel . '_dek.zip';
             $zip = new ZipArchive;
             $zip->open($zipFile, ZipArchive::CREATE);
             
@@ -52,7 +62,10 @@
                     if ($kolom == "foto_ktp" || $kolom == "dokumen" || $kolom == "video")
                     {
                         // cari file
-                        $alamatFile = $filePengguna . "/" . $baris[$kolom];
+                        $alamatFile = $filePengguna. "_" . $nama_tabel . "_enk/" . cleanString($baris[$kolom]);
+                        if (!file_exists($alamatFile)) {
+                            continue;
+                        }
 
                         // dekripsi file
                         $encryptedData = file_get_contents($alamatFile);
@@ -68,7 +81,7 @@
                             $decryptedData = openssl_decrypt($encryptedData, 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
                         }
 
-                        $fileBaru = $filePengguna . "_" . $nama_tabel . "/";
+                        $fileBaru = $filePengguna . "_" . $nama_tabel . "_dek/";
                         if (!file_exists($fileBaru)) {
                             mkdir($fileBaru, 0777, true);
                         }
@@ -92,11 +105,7 @@
             header('Content-Length: ' . filesize($zipFile));
 
             readfile($zipFile);
-
-            // Clean up temporary files and directory
-            // unlink($zipFile);
-            // unlink("data_unggah/" . $baris["id_pengguna"] . "_zip/" . $baris[$kolom] . $i);
-            // rmdir("data_unggah/" . $baris["id_pengguna"] . "_zip");
+            unlink($zipFile);
         }
     }
 
