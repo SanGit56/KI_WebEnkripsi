@@ -1,40 +1,7 @@
 <?php
-    if(!isset($_POST["username"]) || !isset($_POST["password"])) {
-        echo "Masuk terlebih dahulu<br />";
-        die();
-    }
-
-    $namaserver = "localhost";
-    $usernamedb = "root";
-    $passworddb = "";
-    $namadb = "buat_belajar";
-
-    $konek = mysqli_connect($namaserver, $usernamedb, $passworddb, $namadb);
-
-    if (!$konek) {
-        die("Koneksi gagal: " . mysqli_connect_error());
-    }
-
-    $username = mysqli_real_escape_string($konek, $_POST["username"]);
-    $password = hash("sha256", mysqli_real_escape_string($konek, $_POST["password"]));
-
-    // cek apakah pengguna ada
-    $sql_cek_pgn = "SELECT id FROM ki_pengguna WHERE username = '" . $username . "' AND password = '" . $password . "'";
-    $hasil_cek_pgn = mysqli_query($konek, $sql_cek_pgn);
-    $id_pgn_msk = "";
-    $ada_pengguna = 0;
-
-    if (mysqli_num_rows($hasil_cek_pgn) > 0) {
-        $id_pgn_msk = mysqli_fetch_assoc($hasil_cek_pgn)["id"];
-        $ada_pengguna = 1;
-
-        if (!file_exists("data_unggah")) {
-            mkdir("data_unggah", 0777, true);
-        }
-    } else {
-        echo "Pengguna tidak ditemukan<br />";
-        die();
-    }
+    include 'cek_masuk.php';
+    include 'koneksi.php';
+    include 'cek_pengguna.php';
 ?>
 
 <!DOCTYPE html>
@@ -74,16 +41,17 @@
         $hasil_ambil_pgn = mysqli_query($konek, $sql_ambil_pgn);
     
         echo "<table>
-                <caption>Tabel ki_minta_akses</caption>
-                <tr>
-                    <th>id</th>
-                    <th>username</th>
-                    <th>aksi</th>
-                </tr>";
+            <caption>Tabel ki_minta_akses</caption>
+            <tr>
+                <th>id</th>
+                <th>username</th>
+                <th>aksi</th>
+            </tr>";
     
         if (mysqli_num_rows($hasil_ambil_pgn) > 0) {
             while ($baris_ambil_pgn = mysqli_fetch_assoc($hasil_ambil_pgn)) {
-                echo "<tr><td>" . $baris_ambil_pgn["id"] . "</td>
+                echo "<tr>
+                <td>" . $baris_ambil_pgn["id"] . "</td>
                 <td>" . $baris_ambil_pgn["username"] . "</td>
                 <td><form method='post' action='akses.php'>
                         <input type='hidden' value='" . $_POST["username"] . "' name='username'>
@@ -118,8 +86,10 @@
                 echo "</td></tr>";
             }
         } else {
-            echo "<tr><td>-</td>
-            <td>-</td></tr>";
+            echo "<tr>
+                <td>-</td>
+                <td>-</td>
+            </tr>";
         }
     
         echo "</table>";
@@ -152,118 +122,125 @@
     <?php
         function ambil_data($koneksi, $nama_tabel, $id_pengguna)
         {
-            $sql = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM " . $nama_tabel . " WHERE id_pengguna = '$id_pengguna'";
-            $hasil = mysqli_query($koneksi, $sql);
+            $sql_baca = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM $nama_tabel WHERE id_pengguna = '$id_pengguna'";
+            $hasil_baca = mysqli_query($koneksi, $sql_baca);
 
             echo "<table>
-                    <caption>Tabel " . $nama_tabel . "</caption>
-                    <tr>
-                        <th>id</th>
-                        <th>id_pengguna</th>
-                        <th>nama_lengkap</th>
-                        <th>jenis_kelamin</th>
-                        <th>warga_negara</th>
-                        <th>agama</th>
-                        <th>status_kawin</th>
-                        <th>no_telepon</th>
-                        <th>foto_ktp</th>
-                        <th>dokumen</th>
-                        <th>video</th>
-                        <th>init_vector</th>
-                        <th>enc_key</th>
-                    </tr>";
+                <caption>Tabel " . $nama_tabel . "</caption>
+                <tr>
+                    <th>id</th>
+                    <th>id_pengguna</th>
+                    <th>nama_lengkap</th>
+                    <th>jenis_kelamin</th>
+                    <th>warga_negara</th>
+                    <th>agama</th>
+                    <th>status_kawin</th>
+                    <th>no_telepon</th>
+                    <th>foto_ktp</th>
+                    <th>dokumen</th>
+                    <th>video</th>
+                    <th>init_vector</th>
+                    <th>enc_key</th>
+                </tr>";
 
-            if (mysqli_num_rows($hasil) > 0) {
-                while ($baris = mysqli_fetch_assoc($hasil)) {
-                    echo "<tr><td>" . $baris["id"] . "</td>
-                    <td>" . $baris["id_pengguna"] . "</td>
-                    <td>" . $baris["nama_lengkap"] . "</td>
-                    <td>" . $baris["jenis_kelamin"] . "</td>
-                    <td>" . $baris["warga_negara"] . "</td>
-                    <td>" . $baris["agama"] . "</td>
-                    <td>" . $baris["status_kawin"] . "</td>
-                    <td>" . $baris["no_telepon"] . "</td>
-                    <td>" . $baris["foto_ktp"] . "</td>
-                    <td>" . $baris["dokumen"] . "</td>
-                    <td>" . $baris["video"] . "</td>
-                    <td>" . base64_encode($baris["init_vector"]) . "</td>
-                    <td>" . base64_encode($baris["enc_key"]) . "</td></tr>";
+            if (mysqli_num_rows($hasil_baca) > 0) {
+                while ($baris_baca = mysqli_fetch_assoc($hasil_baca)) {
+                    // menampilkan data mentah dari basisdata
+                    echo "<tr><td>" . $baris_baca["id"] . "</td>
+                    <td>" . $baris_baca["id_pengguna"] . "</td>
+                    <td>" . $baris_baca["nama_lengkap"] . "</td>
+                    <td>" . $baris_baca["jenis_kelamin"] . "</td>
+                    <td>" . $baris_baca["warga_negara"] . "</td>
+                    <td>" . $baris_baca["agama"] . "</td>
+                    <td>" . $baris_baca["status_kawin"] . "</td>
+                    <td>" . $baris_baca["no_telepon"] . "</td>
+                    <td>" . $baris_baca["foto_ktp"] . "</td>
+                    <td>" . $baris_baca["dokumen"] . "</td>
+                    <td>" . $baris_baca["video"] . "</td>
+                    <td>" . base64_encode($baris_baca["init_vector"]) . "</td>
+                    <td>" . base64_encode($baris_baca["enc_key"]) . "</td></tr>";
 
+                    // mendekripsi data
                     if ($nama_tabel == "ki_aes")
                     {
                         // dekripsi data AES dari database
-                        $nama_lengkap = openssl_decrypt($baris["nama_lengkap"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $jenis_kelamin = openssl_decrypt($baris["jenis_kelamin"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $warga_negara = openssl_decrypt($baris["warga_negara"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $agama = openssl_decrypt($baris["agama"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $status_kawin = openssl_decrypt($baris["status_kawin"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $no_telepon = openssl_decrypt($baris["no_telepon"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $foto_ktp = openssl_decrypt($baris["foto_ktp"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $dokumen = openssl_decrypt($baris["dokumen"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $video = openssl_decrypt($baris["video"], 'aes-256-cbc', $baris["enc_key"], 0, $baris["init_vector"]);
+                        $nama_lengkap = openssl_decrypt($baris_baca["nama_lengkap"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $jenis_kelamin = openssl_decrypt($baris_baca["jenis_kelamin"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $warga_negara = openssl_decrypt($baris_baca["warga_negara"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $agama = openssl_decrypt($baris_baca["agama"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $status_kawin = openssl_decrypt($baris_baca["status_kawin"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $no_telepon = openssl_decrypt($baris_baca["no_telepon"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $foto_ktp = openssl_decrypt($baris_baca["foto_ktp"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $dokumen = openssl_decrypt($baris_baca["dokumen"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $video = openssl_decrypt($baris_baca["video"], 'aes-256-cbc', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
                     }
                     else if ($nama_tabel == "ki_rc4")
                     {
                         // dekripsi data RC4 dari database
-                        $nama_lengkap = openssl_decrypt($baris["nama_lengkap"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $jenis_kelamin = openssl_decrypt($baris["jenis_kelamin"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $warga_negara = openssl_decrypt($baris["warga_negara"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $agama = openssl_decrypt($baris["agama"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $status_kawin = openssl_decrypt($baris["status_kawin"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $no_telepon = openssl_decrypt($baris["no_telepon"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $foto_ktp = openssl_decrypt($baris["foto_ktp"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $dokumen = openssl_decrypt($baris["dokumen"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $video = openssl_decrypt($baris["video"], 'rc4', $baris["enc_key"], 0, $baris["init_vector"]);
+                        $nama_lengkap = openssl_decrypt($baris_baca["nama_lengkap"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $jenis_kelamin = openssl_decrypt($baris_baca["jenis_kelamin"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $warga_negara = openssl_decrypt($baris_baca["warga_negara"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $agama = openssl_decrypt($baris_baca["agama"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $status_kawin = openssl_decrypt($baris_baca["status_kawin"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $no_telepon = openssl_decrypt($baris_baca["no_telepon"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $foto_ktp = openssl_decrypt($baris_baca["foto_ktp"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $dokumen = openssl_decrypt($baris_baca["dokumen"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $video = openssl_decrypt($baris_baca["video"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
                     }
                     else if ($nama_tabel == "ki_des")
                     {
                         // dekripsi data DES dari database
-                        $nama_lengkap = openssl_decrypt($baris["nama_lengkap"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $jenis_kelamin = openssl_decrypt($baris["jenis_kelamin"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $warga_negara = openssl_decrypt($baris["warga_negara"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $agama = openssl_decrypt($baris["agama"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $status_kawin = openssl_decrypt($baris["status_kawin"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $no_telepon = openssl_decrypt($baris["no_telepon"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $foto_ktp = openssl_decrypt($baris["foto_ktp"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $dokumen = openssl_decrypt($baris["dokumen"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
-                        $video = openssl_decrypt($baris["video"], 'des-ede3-ofb', $baris["enc_key"], 0, $baris["init_vector"]);
+                        $nama_lengkap = openssl_decrypt($baris_baca["nama_lengkap"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $jenis_kelamin = openssl_decrypt($baris_baca["jenis_kelamin"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $warga_negara = openssl_decrypt($baris_baca["warga_negara"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $agama = openssl_decrypt($baris_baca["agama"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $status_kawin = openssl_decrypt($baris_baca["status_kawin"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $no_telepon = openssl_decrypt($baris_baca["no_telepon"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $foto_ktp = openssl_decrypt($baris_baca["foto_ktp"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $dokumen = openssl_decrypt($baris_baca["dokumen"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $video = openssl_decrypt($baris_baca["video"], 'des-ede3-ofb', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
                     }
 
-                    echo "<tr><td>" . $baris["id"] . "</td>
-                    <td>" . $baris["id_pengguna"] . "</td>
-                    <td>" . $nama_lengkap . "</td>
-                    <td>" . $jenis_kelamin . "</td>
-                    <td>" . $warga_negara . "</td>
-                    <td>" . $agama . "</td>
-                    <td>" . $status_kawin . "</td>
-                    <td>" . $no_telepon . "</td>
-                    
-                    <td><img src='data_unggah/" . $baris["id_pengguna"] . "_" . $nama_tabel . "/" . $foto_ktp . "' alt='" . $foto_ktp . "' width='150' height='150'></td>
+                    // menampilkan data hasil dekripsi
+                    echo "<tr>
+                        <td>" . $baris_baca["id"] . "</td>
+                        <td>" . $baris_baca["id_pengguna"] . "</td>
+                        <td>" . $nama_lengkap . "</td>
+                        <td>" . $jenis_kelamin . "</td>
+                        <td>" . $warga_negara . "</td>
+                        <td>" . $agama . "</td>
+                        <td>" . $status_kawin . "</td>
+                        <td>" . $no_telepon . "</td>
+                        
+                        <td><img src='data_unggah/" . $baris_baca["id_pengguna"] . "_" . $nama_tabel . "/" . $foto_ktp . "' alt='" . $foto_ktp . "' width='150' height='150'></td>
 
-                    <td>" . $dokumen . "</td>
+                        <td>" . $dokumen . "</td>
 
-                    <td><video width='150' height='150' controls>
-                        <source src='data_unggah/" . $baris["id_pengguna"] . "_" . $nama_tabel . "/" . $video . "' type='video/mp4'>
-                        " . $video . "
-                    </video>" . $video . "</td>
-                    
-                    <td>" . base64_encode($baris["init_vector"]) . "</td>
-                    <td>" . base64_encode($baris["enc_key"]) . "</td></tr>";
+                        <td><video width='150' height='150' controls>
+                            <source src='data_unggah/" . $baris_baca["id_pengguna"] . "_" . $nama_tabel . "/" . $video . "' type='video/mp4'>
+                            " . $video . "
+                        </video>" . $video . "</td>
+                        
+                        <td>" . base64_encode($baris_baca["init_vector"]) . "</td>
+                        <td>" . base64_encode($baris_baca["enc_key"]) . "</td>
+                    </tr>";
                 }
             } else {
-                echo "<tr><td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td></tr>";
+                echo "<tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>";
             }
 
             if ($nama_tabel == "ki_aes")
@@ -277,56 +254,60 @@
                     {
                         $id_data = $baris_pgn_pny_akses["id_data"];
 
-                        $sql1 = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM " . $nama_tabel . " WHERE id = '$id_data'";
-                        $hasil1 = mysqli_query($koneksi, $sql1);
+                        $sql_data_pny_akses = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM " . $nama_tabel . " WHERE id = '$id_data'";
+                        $hasil_data_pny_akses = mysqli_query($koneksi, $sql_data_pny_akses);
 
-                        if (mysqli_num_rows($hasil1) > 0) {
-                            while ($baris1 = mysqli_fetch_assoc($hasil1)) {
-                                echo "<tr><td>" . $baris1["id"] . "</td>
-                                <td>" . $baris1["id_pengguna"] . "</td>
-                                <td>" . $baris1["nama_lengkap"] . "</td>
-                                <td>" . $baris1["jenis_kelamin"] . "</td>
-                                <td>" . $baris1["warga_negara"] . "</td>
-                                <td>" . $baris1["agama"] . "</td>
-                                <td>" . $baris1["status_kawin"] . "</td>
-                                <td>" . $baris1["no_telepon"] . "</td>
-                                <td>" . $baris1["foto_ktp"] . "</td>
-                                <td>" . $baris1["dokumen"] . "</td>
-                                <td>" . $baris1["video"] . "</td>
-                                <td>" . base64_encode($baris1["init_vector"]) . "</td>
-                                <td>" . base64_encode($baris1["enc_key"]) . "</td></tr>";
+                        if (mysqli_num_rows($hasil_data_pny_akses) > 0) {
+                            while ($baris_data_pny_akses = mysqli_fetch_assoc($hasil_data_pny_akses)) {
+                                echo "<tr>
+                                    <td>" . $baris_data_pny_akses["id"] . "</td>
+                                    <td>" . $baris_data_pny_akses["id_pengguna"] . "</td>
+                                    <td>" . $baris_data_pny_akses["nama_lengkap"] . "</td>
+                                    <td>" . $baris_data_pny_akses["jenis_kelamin"] . "</td>
+                                    <td>" . $baris_data_pny_akses["warga_negara"] . "</td>
+                                    <td>" . $baris_data_pny_akses["agama"] . "</td>
+                                    <td>" . $baris_data_pny_akses["status_kawin"] . "</td>
+                                    <td>" . $baris_data_pny_akses["no_telepon"] . "</td>
+                                    <td>" . $baris_data_pny_akses["foto_ktp"] . "</td>
+                                    <td>" . $baris_data_pny_akses["dokumen"] . "</td>
+                                    <td>" . $baris_data_pny_akses["video"] . "</td>
+                                    <td>" . base64_encode($baris_data_pny_akses["init_vector"]) . "</td>
+                                    <td>" . base64_encode($baris_data_pny_akses["enc_key"]) . "</td>
+                                </tr>";
             
                                 // dekripsi data AES dari database
-                                $nama_lengkap = openssl_decrypt($baris1["nama_lengkap"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $jenis_kelamin = openssl_decrypt($baris1["jenis_kelamin"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $warga_negara = openssl_decrypt($baris1["warga_negara"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $agama = openssl_decrypt($baris1["agama"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $status_kawin = openssl_decrypt($baris1["status_kawin"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $no_telepon = openssl_decrypt($baris1["no_telepon"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $foto_ktp = openssl_decrypt($baris1["foto_ktp"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $dokumen = openssl_decrypt($baris1["dokumen"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
-                                $video = openssl_decrypt($baris1["video"], 'aes-256-cbc', $baris1["enc_key"], 0, $baris1["init_vector"]);
+                                $nama_lengkap = openssl_decrypt($baris_data_pny_akses["nama_lengkap"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $jenis_kelamin = openssl_decrypt($baris_data_pny_akses["jenis_kelamin"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $warga_negara = openssl_decrypt($baris_data_pny_akses["warga_negara"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $agama = openssl_decrypt($baris_data_pny_akses["agama"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $status_kawin = openssl_decrypt($baris_data_pny_akses["status_kawin"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $no_telepon = openssl_decrypt($baris_data_pny_akses["no_telepon"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $foto_ktp = openssl_decrypt($baris_data_pny_akses["foto_ktp"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $dokumen = openssl_decrypt($baris_data_pny_akses["dokumen"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
+                                $video = openssl_decrypt($baris_data_pny_akses["video"], 'aes-256-cbc', $baris_data_pny_akses["enc_key"], 0, $baris_data_pny_akses["init_vector"]);
             
-                                echo "<tr><td>" . $baris1["id"] . "</td>
-                                <td>" . $baris1["id_pengguna"] . "</td>
-                                <td>" . $nama_lengkap . "</td>
-                                <td>" . $jenis_kelamin . "</td>
-                                <td>" . $warga_negara . "</td>
-                                <td>" . $agama . "</td>
-                                <td>" . $status_kawin . "</td>
-                                <td>" . $no_telepon . "</td>
-                                
-                                <td><img src='data_unggah/" . $baris1["id_pengguna"] . "_" . $nama_tabel . "/" . $foto_ktp . "' alt='" . $foto_ktp . "' width='150' height='150'></td>
-            
-                                <td><iframe src='data_unggah/" . $baris1["id_pengguna"] . "_" . $nama_tabel . "/" . $dokumen . "'  width='150' height='150'></iframe></td>
-            
-                                <td><video width='150' height='150' controls>
-                                    <source src='data_unggah/" . $baris1["id_pengguna"] . "_" . $nama_tabel . "/" . $video . "' type='video/mp4'>
-                                    Your browser does not support the video tag.
-                                </video>" . $video . "</td>
-                                
-                                <td>" . base64_encode($baris1["init_vector"]) . "</td>
-                                <td>" . base64_encode($baris1["enc_key"]) . "</td></tr>";
+                                echo "<tr>
+                                    <td>" . $baris_data_pny_akses["id"] . "</td>
+                                    <td>" . $baris_data_pny_akses["id_pengguna"] . "</td>
+                                    <td>" . $nama_lengkap . "</td>
+                                    <td>" . $jenis_kelamin . "</td>
+                                    <td>" . $warga_negara . "</td>
+                                    <td>" . $agama . "</td>
+                                    <td>" . $status_kawin . "</td>
+                                    <td>" . $no_telepon . "</td>
+                                    
+                                    <td><img src='data_unggah/" . $baris_data_pny_akses["id_pengguna"] . "_" . $nama_tabel . "/" . $foto_ktp . "' alt='" . $foto_ktp . "' width='150' height='150'></td>
+                
+                                    <td><iframe src='data_unggah/" . $baris_data_pny_akses["id_pengguna"] . "_" . $nama_tabel . "/" . $dokumen . "'  width='150' height='150'></iframe></td>
+                
+                                    <td><video width='150' height='150' controls>
+                                        <source src='data_unggah/" . $baris_data_pny_akses["id_pengguna"] . "_" . $nama_tabel . "/" . $video . "' type='video/mp4'>
+                                        Your browser does not support the video tag.
+                                    </video>" . $video . "</td>
+                                    
+                                    <td>" . base64_encode($baris_data_pny_akses["init_vector"]) . "</td>
+                                    <td>" . base64_encode($baris_data_pny_akses["enc_key"]) . "</td>
+                                </tr>";
                             }
                         }
                     }

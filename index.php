@@ -18,21 +18,12 @@
     </form>
 
     <?php
-    $namaserver = "localhost";
-    $usernamedb = "root";
-    $passworddb = "";
-    $namadb = "buat_belajar";
+        include 'koneksi.php';
+        
+        $sql = "SELECT id, username, password, katasandi FROM ki_pengguna";
+        $hasil = mysqli_query($konek, $sql);
 
-    $konek = mysqli_connect($namaserver, $usernamedb, $passworddb, $namadb);
-
-    if (!$konek) {
-        die("Koneksi gagal: " . mysqli_connect_error());
-    }
-
-    $sql_pengguna = "SELECT id, username, password, katasandi FROM ki_pengguna";
-    $hasil = mysqli_query($konek, $sql_pengguna);
-
-    echo "<table>
+        echo "<table>
             <caption>Tabel ki_pengguna (gunakan akun di bawah ini)</caption>
             <tr>
                 <th>id</th>
@@ -41,17 +32,27 @@
                 <th>katasandi</th>
             </tr>";
 
-    if (mysqli_num_rows($hasil) > 0) {
-        while ($baris = mysqli_fetch_assoc($hasil)) {
-            echo "<tr><td>" . $baris["id"] . "</td><td>" . $baris["username"] . "</td><td>" . $baris["password"] . "</td><td>" . $baris["katasandi"] . "</td></tr>";
+        if (mysqli_num_rows($hasil) > 0) {
+            while ($baris = mysqli_fetch_assoc($hasil)) {
+                echo "<tr>
+                    <td>" . $baris["id"] . "</td>
+                    <td>" . $baris["username"] . "</td>
+                    <td>" . $baris["password"] . "</td>
+                    <td>" . $baris["katasandi"] . "</td>
+                </tr>";
+            }
+        } else {
+            echo "<tr>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>";
         }
-    } else {
-        echo "<tr><td>-</td><td>-</td><td>-</td><td>-</td></tr>";
-    }
 
-    echo "</table>";
+        echo "</table>";
 
-    mysqli_close($konek);
+        mysqli_close($konek);
     ?>
 </body>
 
