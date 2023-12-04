@@ -1,5 +1,6 @@
 <?php
     include 'cek_masuk.php';
+    include 'rc4.php';
 
     function cleanString($inputString) {
         // Define a regular expression to replace forbidden characters with underscores
@@ -85,9 +86,9 @@
         }
         else if ($nama_tabel == "ki_rc4")
         {
-            $foto_ktp_enkripsi = openssl_encrypt($foto_ktp_asli, 'rc4', $key, 0, $iv);
-            $dokumen_enkripsi = openssl_encrypt($dokumen_asli, 'rc4', $key, 0, $iv);
-            $video_enkripsi = openssl_encrypt($video_asli, 'rc4', $key, 0, $iv);
+            $foto_ktp_enkripsi = rc4_encrypt($foto_ktp_asli, $key);
+            $dokumen_enkripsi = rc4_encrypt($dokumen_asli, $key);
+            $video_enkripsi = rc4_encrypt($video_asli, $key);
         }
         else if ($nama_tabel == "ki_des")
         {
@@ -124,8 +125,7 @@
     // setel iv dan key enkripsi
     $iv_aes = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
     $key_aes = random_bytes(32);
-    // $iv_rc4 = openssl_random_pseudo_bytes(openssl_cipher_iv_length('rc4'));
-    $key_rc4 = random_bytes(32);
+    $key_rc4 = rc4_initialize(random_bytes(32));
     $iv_des = openssl_random_pseudo_bytes(openssl_cipher_iv_length('des-ede3-ofb'));
     $key_des = random_bytes(32);
 
@@ -179,18 +179,18 @@
             unggah_data($konek, $tabel, $dirUnggahData, $id_pgn_msk, $nama_lengkap_aes, $jenis_kelamin_aes, $warga_negara_aes, $agama_aes, $status_kawin_aes, $no_telepon_aes, $foto_ktp_aes, $dokumen_aes, $video_aes, $iv_aes, $key_aes);
 
             // enkripsi RC4
-            $nama_lengkap_rc4 = openssl_encrypt($nama_lengkap, 'rc4', $key_rc4, 0, $iv_rc4);
-            $jenis_kelamin_rc4 = openssl_encrypt($jenis_kelamin, 'rc4', $key_rc4, 0, $iv_rc4);
-            $warga_negara_rc4 = openssl_encrypt($warga_negara, 'rc4', $key_rc4, 0, $iv_rc4);
-            $agama_rc4 = openssl_encrypt($agama, 'rc4', $key_rc4, 0, $iv_rc4);
-            $status_kawin_rc4 = openssl_encrypt($status_kawin, 'rc4', $key_rc4, 0, $iv_rc4);
-            $no_telepon_rc4 = openssl_encrypt($no_telepon, 'rc4', $key_rc4, 0, $iv_rc4);
-            $foto_ktp_rc4 = openssl_encrypt($foto_ktp, 'rc4', $key_rc4, 0, $iv_rc4);
-            $dokumen_rc4 = openssl_encrypt($dokumen, 'rc4', $key_rc4, 0, $iv_rc4);
-            $video_rc4 = openssl_encrypt($video, 'rc4', $key_rc4, 0, $iv_rc4);
+            $nama_lengkap_rc4 = rc4_encrypt($nama_lengkap, $key_rc4);
+            $jenis_kelamin_rc4 = rc4_encrypt($jenis_kelamin, $key_rc4);
+            $warga_negara_rc4 = rc4_encrypt($warga_negara, $key_rc4);
+            $agama_rc4 = rc4_encrypt($agama, $key_rc4);
+            $status_kawin_rc4 = rc4_encrypt($status_kawin, $key_rc4);
+            $no_telepon_rc4 = rc4_encrypt($no_telepon, $key_rc4);
+            $foto_ktp_rc4 = rc4_encrypt($foto_ktp, $key_rc4);
+            $dokumen_rc4 = rc4_encrypt($dokumen, $key_rc4);
+            $video_rc4 = rc4_encrypt($video, $key_rc4);
 
             $tabel = "ki_rc4";
-            unggah_data($konek, $tabel, $dirUnggahData, $id_pgn_msk, $nama_lengkap_rc4, $jenis_kelamin_rc4, $warga_negara_rc4, $agama_rc4, $status_kawin_rc4, $no_telepon_rc4, $foto_ktp_rc4, $dokumen_rc4, $video_rc4, $iv_rc4, $key_rc4);
+            unggah_data($konek, $tabel, $dirUnggahData, $id_pgn_msk, $nama_lengkap_rc4, $jenis_kelamin_rc4, $warga_negara_rc4, $agama_rc4, $status_kawin_rc4, $no_telepon_rc4, $foto_ktp_rc4, $dokumen_rc4, $video_rc4, $tabel, $key_rc4);
 
             // enkripsi DES
             $nama_lengkap_des = openssl_encrypt($nama_lengkap, 'des-ede3-ofb', $key_des, 0, $iv_des);

@@ -120,6 +120,8 @@
     </form>
 
     <?php
+        include 'rc4.php';
+        
         function ambil_data($koneksi, $nama_tabel, $id_pengguna)
         {
             $sql_baca = "SELECT id, id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key FROM $nama_tabel WHERE id_pengguna = '$id_pengguna'";
@@ -177,15 +179,15 @@
                     else if ($nama_tabel == "ki_rc4")
                     {
                         // dekripsi data RC4 dari database
-                        $nama_lengkap = openssl_decrypt($baris_baca["nama_lengkap"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $jenis_kelamin = openssl_decrypt($baris_baca["jenis_kelamin"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $warga_negara = openssl_decrypt($baris_baca["warga_negara"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $agama = openssl_decrypt($baris_baca["agama"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $status_kawin = openssl_decrypt($baris_baca["status_kawin"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $no_telepon = openssl_decrypt($baris_baca["no_telepon"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $foto_ktp = openssl_decrypt($baris_baca["foto_ktp"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $dokumen = openssl_decrypt($baris_baca["dokumen"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
-                        $video = openssl_decrypt($baris_baca["video"], 'rc4', $baris_baca["enc_key"], 0, $baris_baca["init_vector"]);
+                        $nama_lengkap = rc4_decrypt($baris_baca["nama_lengkap"], $baris_baca["enc_key"]);
+                        $jenis_kelamin = rc4_decrypt($baris_baca["jenis_kelamin"], $baris_baca["enc_key"]);
+                        $warga_negara = rc4_decrypt($baris_baca["warga_negara"], $baris_baca["enc_key"]);
+                        $agama = rc4_decrypt($baris_baca["agama"], $baris_baca["enc_key"]);
+                        $status_kawin = rc4_decrypt($baris_baca["status_kawin"], $baris_baca["enc_key"]);
+                        $no_telepon = rc4_decrypt($baris_baca["no_telepon"], $baris_baca["enc_key"]);
+                        $foto_ktp = rc4_decrypt($baris_baca["foto_ktp"], $baris_baca["enc_key"]);
+                        $dokumen = rc4_decrypt($baris_baca["dokumen"], $baris_baca["enc_key"]);
+                        $video = rc4_decrypt($baris_baca["video"], $baris_baca["enc_key"]);
                     }
                     else if ($nama_tabel == "ki_des")
                     {
