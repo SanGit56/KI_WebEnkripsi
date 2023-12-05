@@ -37,12 +37,11 @@ Mengambil data dari basisdata. Lalu membuka file zip. Selanjutnya mencari file t
 Mengecek terlebih dulu mode akses yang diminta pengguna. Jika meminta (minta) akses, cek dulu apakah ajuan akses sudah ada. Jika belum, buat permintaan (menambah data di tabel ki_minta_akses) dengan status akses 0. Jika memberi (kasih) akses, cek dulu apakah sudah ada ajuan yang disetujui. Jika belum, ubah status akses pada data terkait menjadi 1
 
 ## Pengembangan
-1. Menambahkan fitur untuk CRUD pengguna
-2. Menambahkan fungsi untuk enkripsi menggunakan algoritma RC4
+1. Menambahkan fitur untuk CRUD pengguna (belum tuntas)
+2. Menambahkan fungsi untuk enkripsi menggunakan algoritma RC4 (belum tuntas)
 3. Memperbaiki fitur unduh file
 4. Mengenkripsi _key_ untuk akses data pengguna lain menggunakan _asymmetric encryption_ 
-5. Aktivasi akses menggunakan _key_ yang diberikan pemilik data bukan hanya dari tombol
+5. Aktivasi akses menggunakan _key_ yang diberikan pemilik data, bukan dari tombol
 
 ## Kendala
-1. Tidak menemukan _library_ untuk algoritma RC4. OpenSSL tidak lagi menyediakan RC4
-2. Proses zip file tidak sempurna (bisa membuka dan mengisi file, tapi tidak bisa menutup) sehingga file zip yang diunduh tidak bisa diekstrak atau dibuka. File juga masih terhitung kosong
+1. Proses zip file tidak sempurna (bisa membuka dan mengisi file, tapi tidak bisa menutup) sehingga file zip yang diunduh tidak bisa diekstrak atau dibuka. File juga masih terhitung kosong

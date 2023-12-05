@@ -14,7 +14,7 @@
 
     function unggah_data($koneksi, $nama_tabel, $dirUnggahData, $id, $nama_lengkap, $jenis_kelamin, $warga_negara, $agama, $status_kawin, $no_telepon, $foto_ktp, $dokumen, $video, $iv, $key)
     {
-        $sql_tambah = "INSERT INTO $nama_tabel (id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key) VALUES ('$id', '$nama_lengkap', '$jenis_kelamin', '$warga_negara', '$agama', '$status_kawin', '$no_telepon', '$foto_ktp', '$dokumen', '$video', '$iv', '$key')";
+        $sql_tambah = "INSERT INTO $nama_tabel (id_pengguna, nama_lengkap, jenis_kelamin, warga_negara, agama, status_kawin, no_telepon, foto_ktp, dokumen, video, init_vector, enc_key) VALUES ($id, '$nama_lengkap', '$jenis_kelamin', '$warga_negara', '$agama', '$status_kawin', '$no_telepon', '$foto_ktp', '$dokumen', '$video', '$iv', '$key')";
 
         if ($koneksi->query($sql_tambah) === TRUE) {
             echo "Berhasil menambah data " . $nama_tabel . "<br />";

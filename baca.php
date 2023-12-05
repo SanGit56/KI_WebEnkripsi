@@ -179,15 +179,25 @@
                     else if ($nama_tabel == "ki_rc4")
                     {
                         // dekripsi data RC4 dari database
-                        $nama_lengkap = rc4_decrypt($baris_baca["nama_lengkap"], $baris_baca["enc_key"]);
-                        $jenis_kelamin = rc4_decrypt($baris_baca["jenis_kelamin"], $baris_baca["enc_key"]);
-                        $warga_negara = rc4_decrypt($baris_baca["warga_negara"], $baris_baca["enc_key"]);
-                        $agama = rc4_decrypt($baris_baca["agama"], $baris_baca["enc_key"]);
-                        $status_kawin = rc4_decrypt($baris_baca["status_kawin"], $baris_baca["enc_key"]);
-                        $no_telepon = rc4_decrypt($baris_baca["no_telepon"], $baris_baca["enc_key"]);
-                        $foto_ktp = rc4_decrypt($baris_baca["foto_ktp"], $baris_baca["enc_key"]);
-                        $dokumen = rc4_decrypt($baris_baca["dokumen"], $baris_baca["enc_key"]);
-                        $video = rc4_decrypt($baris_baca["video"], $baris_baca["enc_key"]);
+                        // $nama_lengkap = rc4_decrypt($baris_baca["nama_lengkap"], $baris_baca["enc_key"]);
+                        // $jenis_kelamin = rc4_decrypt($baris_baca["jenis_kelamin"], $baris_baca["enc_key"]);
+                        // $warga_negara = rc4_decrypt($baris_baca["warga_negara"], $baris_baca["enc_key"]);
+                        // $agama = rc4_decrypt($baris_baca["agama"], $baris_baca["enc_key"]);
+                        // $status_kawin = rc4_decrypt($baris_baca["status_kawin"], $baris_baca["enc_key"]);
+                        // $no_telepon = rc4_decrypt($baris_baca["no_telepon"], $baris_baca["enc_key"]);
+                        // $foto_ktp = rc4_decrypt($baris_baca["foto_ktp"], $baris_baca["enc_key"]);
+                        // $dokumen = rc4_decrypt($baris_baca["dokumen"], $baris_baca["enc_key"]);
+                        // $video = rc4_decrypt($baris_baca["video"], $baris_baca["enc_key"]);
+
+                        $nama_lengkap = '-';
+                        $jenis_kelamin = '-';
+                        $warga_negara = '-';
+                        $agama = '-';
+                        $status_kawin = '-';
+                        $no_telepon = '-';
+                        $foto_ktp = '-';
+                        $dokumen = '-';
+                        $video = '-';
                     }
                     else if ($nama_tabel == "ki_des")
                     {
