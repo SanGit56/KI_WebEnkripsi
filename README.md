@@ -39,9 +39,8 @@ Mengecek terlebih dulu mode akses yang diminta pengguna. Jika meminta (minta) ak
 ## Pengembangan
 1. Menambahkan fitur untuk CRUD pengguna (belum tuntas)
 2. Menambahkan fungsi untuk enkripsi menggunakan algoritma RC4 (belum tuntas)
-3. Memperbaiki fitur unduh file
-4. Mengenkripsi _key_ untuk akses data pengguna lain menggunakan _asymmetric encryption_ 
-5. Aktivasi akses menggunakan _key_ yang diberikan pemilik data, bukan dari tombol
+3. Mengenkripsi _key_ untuk akses data pengguna lain menggunakan _asymmetric encryption_ 
+4. Aktivasi akses menggunakan _key_ yang diberikan pemilik data, bukan dari tombol
 
 ## Kendala
-1. Proses zip file tidak sempurna (bisa membuka dan mengisi file, tapi tidak bisa menutup) sehingga file zip yang diunduh tidak bisa diekstrak atau dibuka. File juga masih terhitung kosong
+1. Untuk membuat pasangan _private_ dan _public key_ masih bermasalah di sisi _library_-nya (OpenSSL)
