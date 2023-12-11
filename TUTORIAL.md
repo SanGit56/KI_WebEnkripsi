@@ -99,6 +99,10 @@ docker exec -it openxpki-docker-openxpki-server-1 /bin/bash /etc/openxpki/contri
 14. If you really want to revoke, click **Submit Request**
 ![cu 14](gambar/cu/cu14.png)
 15. Wait for the revocation request approval by Registration Authority (RA)
+16. Once the request is approved the status will show "Revoked" in **Home > My Certificates**
+![cu 16](gambar/cu/cu16.png)
+17. To check all the revoked certificate, go to **Information > Show Revocation List (CRL)** and download the list (we will use txt format). The file will be downloaded
+![cu 17](gambar/cu/cu17.png)
 
 ## As RA (Registration Authority)
 ### Certification Request Approval
@@ -115,3 +119,9 @@ docker exec -it openxpki-docker-openxpki-server-1 /bin/bash /etc/openxpki/contri
 ![ra 4b](gambar/ra/ra4b.png)
 
 ## As CA (Certificate Authority)
+1. Login as **operators** role. We will use **rob** again
+### Issue Certificate Revocation List
+2. Navigate to **PKI Operation > Issue a Certificate Revocation List**. Tick all the checkboxes to create a new Certificate Revocation List (CRL) without waiting for the default condition (read the sub-heading)
+![ca 2](gambar/ca/ca2.png)
+3. Check the CRL in **Information > Show Revocation List (CRL)**. The number of **Items** will increase
+![ca 3](gambar/ca/ca3.png)
