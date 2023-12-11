@@ -1,7 +1,7 @@
 # OpenXPKI Install
 There are 2 methods to run OpenXPKI yourself (yes, you can try OpenXPKI in the [demo site](http://demo.openxpki.org/)): First, by getting a Debian box ready and download the packages from the [package mirror](http://packages.openxpki.org/), see [https://github.com/openxpki/openxpki](https://github.com/openxpki/openxpki). Second, by using a ready-to-use docker image _whiterabbitsecurity/openxpki3_. In this installation tutorial, we will cover the second method as there will be a complex step in the first method. Also this tutorial is for those who are trying from Windows.
 
-Applications you need to have before following this tutorial:
+## Applications you need to have before following this tutorial
 1. WSL (Windows Subsystem Linux) with Ubuntu installed
 2. Docker Desktop (optional)
 
@@ -14,7 +14,7 @@ Applications you need to have before following this tutorial:
 mkdir <directory_name> // make directory
 cd <directory_name> // enter directory
 ```
-4. Clone the [openxpki-docker](https://github.com/openxpki/openxpki-docker), a new folder is created, enter it. This repo is where the Dockerfile and docker-compose file exists
+4. Clone the [openxpki-docker](https://github.com/openxpki/openxpki-docker) repository, a new folder is created, enter it. This repo is where the Dockerfile and docker-compose file exists
 ```shell
 git clone https://github.com/openxpki/openxpki-docker.git
 cd openxpki-docker
@@ -51,10 +51,26 @@ docker exec -it openxpki-docker-openxpki-server-1 /bin/bash /etc/openxpki/contri
 ![step 13](gambar/step13.png)
 
 # OpenXPKI Tutorial
-## As CA ()
-
-
-## As RA ()
-
-
 ## As Common Users
+1. Select **Test Accounts** for the Handler. We will login as the **users** role
+![cu 1](gambar/cu/cu1.png)
+2. Login as anyone as long as the role is **users**. In this example we will use **bob**
+![cu 2](gambar/cu/cu2.png)
+3. Navigate to **Request certificate** page. In this example, we will choose **TLS/Web Server** as the Certificate Profile
+![cu 3](gambar/cu/cu3.png)
+4. There are some options for the request type, in this tutorial we will generate the key manually. Adjust the parameters the same as the second picture
+![cu 4a](gambar/cu/cu4a.png)
+![cu 4b](gambar/cu/cu4b.png)
+5. The view will change to **Edit Subject** page. Fill the inputs depending on your case
+![cu 5](gambar/cu/cu5.png)
+6. In the **Edit Certificate Info** page you can just **Continue**
+7. Review request, if all are correct, click **Submit request**
+8. Save the generated password as it will be used to download the private key certificate (8kWHKIBtaeQbKLunjV0MTIio)
+![cu 8](gambar/cu/cu8.png)
+9. The common users workflow is finished. Just wait for the approval by Registration Authority (RA)
+![cu 9](gambar/cu/cu9.png)
+
+## As CA (Certificate Authority)
+
+
+## As RA (Registration Authority)
