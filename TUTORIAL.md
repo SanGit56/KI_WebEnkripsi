@@ -12,6 +12,7 @@
     - [Certification Request Approval](#certification-request-approval)
     - [Certificate Revocation Approval](#certificate-revocation-approval)
   - [As CA (Certificate Authority)](#as-ca-certificate-authority)
+    - [Issue Certificate Revocation List](#issue-certificate-revocation-list)
 
 # OpenXPKI Install
 There are 2 methods to run OpenXPKI yourself (yes, you can try OpenXPKI in the [demo site](http://demo.openxpki.org/)): First, by getting a Debian box ready and download the packages from the [package mirror](http://packages.openxpki.org/), see [https://github.com/openxpki/openxpki](https://github.com/openxpki/openxpki). Second, by using a ready-to-use docker image _whiterabbitsecurity/openxpki3_. In this installation tutorial, we will cover the second method as there will be a complex step in the first method. Also this tutorial is for those who are trying from Windows.
