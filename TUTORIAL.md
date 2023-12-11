@@ -52,6 +52,7 @@ docker exec -it openxpki-docker-openxpki-server-1 /bin/bash /etc/openxpki/contri
 
 # OpenXPKI Tutorial
 ## As Common Users
+### Certification Request
 1. Select **Test Accounts** for the Handler. We will login as the **users** role
 ![cu 1](gambar/cu/cu1.png)
 2. Login as anyone as long as the role is **users**. In this example we will use **bob**
@@ -65,12 +66,37 @@ docker exec -it openxpki-docker-openxpki-server-1 /bin/bash /etc/openxpki/contri
 ![cu 5](gambar/cu/cu5.png)
 6. In the **Edit Certificate Info** page you can just **Continue**
 7. Review request, if all are correct, click **Submit request**
-8. Save the generated password as it will be used to download the private key certificate (8kWHKIBtaeQbKLunjV0MTIio)
+8. Save the generated password as it will be used to download the private key certificate
 ![cu 8](gambar/cu/cu8.png)
-9. The common users workflow is finished. Just wait for the approval by Registration Authority (RA)
+9. Wait for the request approval by Registration Authority (RA)
 ![cu 9](gambar/cu/cu9.png)
-
-## As CA (Certificate Authority)
-
+### Download Private Key
+10. Check request status in **Home > My Certificates**. Once it is approved, it will show "Issued" as its status
+![ca 10a](gambar/ca/ca10a.png)
+![ca 10b](gambar/ca/ca10b.png)
+11. Download private key by clicking the **Download private key** link
+![cu 11](gambar/cu/cu11.png)
+12. Fill the password input with the password that had been generated before. Then click **Continue**. Key will be downloaded
+![cu 12](gambar/cu/cu12.png)
+### Certificate Revocation
+13. To revoke certicate, navigate to **Revoke certificate**. Fill certificate identifier and choose the reason code. Click **Continue**
+![cu 13](gambar/cu/cu13.png)
+14. If you really want to revoke, click **Submit Request**
+![cu 14](gambar/cu/cu14.png)
+15. Wait for the revocation request approval by Registration Authority (RA)
 
 ## As RA (Registration Authority)
+### Certification Request Approval
+1. Select **Test Accounts** for the Handler. This time we will login as the **operators** role. In this example we will use **rob**
+![ra 1](gambar/ra/ra1.png)
+2. Navigate and click **Home**. A dropdown will appear, choose **My Tasks**. A read view about certification requests will load
+![ra 2a](gambar/ra/ra2a.png)
+![ra 2b](gambar/ra/ra2b.png)
+3. Click the request and do some review. To approve, click **Approve Request**
+![ra 3](gambar/ra/ra3.png)
+### Certificate Revocation Approval
+4. Navigate to **Home > My Tasks** a **Revocation Requests** table will appear. Click the request and do some review. To approve, click **Approve Revocation**
+![ra 4a](gambar/ra/ra4a.png)
+![ra 4b](gambar/ra/ra4b.png)
+
+## As CA (Certificate Authority)
