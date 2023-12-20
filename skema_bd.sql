@@ -135,7 +135,9 @@ CREATE TABLE `ki_pengguna` (
   `id` int(11) NOT NULL,
   `username` varchar(16) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `katasandi` varchar(32) NOT NULL
+  `katasandi` varchar(32) NOT NULL,
+  `priv_key` varchar(256) NOT NULL,
+  `pub_key` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -143,10 +145,10 @@ CREATE TABLE `ki_pengguna` (
 --
 
 INSERT INTO `ki_pengguna` (`id`, `username`, `password`, `katasandi`) VALUES
-(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin'),
-(2, 'san', '6b9cd7872ae634539ea1a99e1c4c16b41c9314c99192560ecf9c4bb846647655', 'san'),
-(3, 'azizah', '8bf18ab6cfa4db5582b05d4e42be03822392f7c7b3b08737096f872ec886af6c', 'azizah'),
-(4, 'ulima', '51719e5a02eba6831734b46bc49dd444734c6120383673991ae45583f45bc06d', 'ulima');
+(1, 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'xcnXDYxwEOabqRSzcaEH8NO2yYLW8FG5cc0kkxWFhikN6HXLs9bMF970AA77AEJMkL8TeXDHk0v1xS2vOXbUjrZVeqL7Df5TxBOVHknpU2ZpMyWe1D4JVz7huwAULwM036RxAhrmyGpFa31k+3cNdtTIpkN1aQqE7/6XkkIgQAw=', 'eTLVJckmZJ4NEc20JzAay7q386d93B9MkFo5DWLByZk0dNV3m6iCl52kItiLtTgv0fQkykoHMt3WFR9jIz+7B+h9EoOMjZ9iNisib55//mPDfoBmQKAKwno8/FB3SMxjKyCXD88ngPHcmcv9njUg1QZKWLnl9f/hi4yd9cOtymc='),
+(2, 'san', '6b9cd7872ae634539ea1a99e1c4c16b41c9314c99192560ecf9c4bb846647655', 'san', 'lyInbg69+4sGDiu9wDKKO7lrKkj58PrsN8VdxY+174PzuWSap+C/q4DPMdWP7JMmaXxQ88J29SAzBDic7geNgZhbERAODdkbMpc8yyXhIxA2j6EiQgxTE3aMShsEnfwPTCWXtlSZQBYFyKrJrR63bLPPMMqvKlor0XJVC/RDdV8=', 'kbKudmOUJD4R4EhqfiMNP5i8SHe7jy1uIAEKMomfftlnTijmY8+m5q2hjevwGn9/SH4K9o89ESSA/xMRltJ3hSl9vKrZuNvAIJmpH0SO3L6HCL58KT5y/+wMeBEdx4AtpAV5hvPd/mU+PZvEvSv8zpoLYvxaea5NANxp9gLUBa8='),
+(3, 'azizah', '8bf18ab6cfa4db5582b05d4e42be03822392f7c7b3b08737096f872ec886af6c', 'azizah', 'J7nRndg3ALFLP8o0zKkeKzJsM+Ed5BLBvk4gIacFbODV+HxHB91asGWiMLtPDPSmzD3PXI8k9VXeqgD9JREhBKKTW0Zt/Mpuhg4cgL0amAYnQn7n11pn930Z+oLQiIRFKoMHuw0lGQQ/pezzQn5mbj3cvO9jgxzJsbhweAaQpwM=', 'dgy1f24mDLnvKPAj+hti8pG5mH3Qji22R6nMSYV4zkWmyVQBz1NmUyHfHoRxc31JzJ/uvhZ1soiRluIz49zBVyQsF2PLKpMXqa2Nf6RwIo3PG7RG9Nr9bl1tI2fe+HeX8/+FT4P389b7XdI9T4Gaf6eMZMeAE6m5Z6yvnXvWuJQ='),
+(4, 'ulima', '51719e5a02eba6831734b46bc49dd444734c6120383673991ae45583f45bc06d', 'ulima', 'ZHqClLLBFMmd+woJ8mAX7tvufyxcUHOMZW1Q0oZRLKvW0/t1mRgyx1CFGlNcuUuo8M3uEK8yMB5Pn6+i+dCwBO+R1emTE7XW/XqIstms/3oNuh84EweXCk2eoBV/HTarQVTzdckfcQUE+1togKtIVsvNHEL5XlN1mWpkrBDspgs=', 'PhEamN+oo67IKyn6G3hKerbBizLKUSeiGYKsUl3ekMLCWXfnDHvo7+ybNtQJZThpoLFL6x3UxB4/ydxxTTve9Zh+otQmhcHdwAt1gVvxKTuBoB15OtxdspC25k8GkYBrViGxxowi6rUIYLMwf3VLzXnQTtpYC8x1upwc14HdYMw=');
 
 -- --------------------------------------------------------
 
