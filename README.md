@@ -36,6 +36,12 @@ Mengambil data dari basisdata. Lalu membuka file zip. Selanjutnya mencari file t
 ### akses.php
 Mengecek terlebih dulu mode akses yang diminta pengguna. Jika meminta (minta) akses, cek dulu apakah ajuan akses sudah ada. Jika belum, buat permintaan (menambah data di tabel ki_minta_akses) dengan status akses 0. Jika memberi (kasih) akses, cek dulu apakah sudah ada ajuan yang disetujui. Jika belum, ubah status akses pada data terkait menjadi 1
 
+### generate_key.php
+Meng-generate asymmetrical key (public & private) menggunakan library phpseclib
+
+### signature.php & signverify.php
+Meng-embed signature yang telah di enkripsi menggunakan private key lalu di encode pada file PDF yang dipilih kemudian verify signature PDF tersebut dengan di decode terlebih dahulu lalu di dekripsi menggunakan public key user
+
 ## Pengembangan
 1. Menambahkan fitur untuk CRUD pengguna (belum tuntas)
 2. Menambahkan fungsi untuk enkripsi menggunakan algoritma RC4 (belum tuntas)
