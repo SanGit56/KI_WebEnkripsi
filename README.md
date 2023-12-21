@@ -49,4 +49,4 @@ Meng-embed signature yang telah di enkripsi menggunakan private key lalu di enco
 4. Aktivasi akses menggunakan _key_ yang diberikan pemilik data, bukan dari tombol
 
 ## Kendala
-1. Untuk membuat pasangan _private_ dan _public key_ masih bermasalah di sisi _library_-nya (OpenSSL)
+1. Untuk membuat button untuk membuat CA belum rampung tetapi di backend fungsinya sudah bisa tinggal di interfacenya saja
